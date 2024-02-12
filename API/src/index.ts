@@ -2,8 +2,12 @@ import express, {Request , Response} from 'express';
 import dotenv from 'dotenv';
 import {connectToDatabase} from './db/db_initialiser';
 import bodyParser from 'body-parser';
-import login from './routes/createUser';
-import getUsers from './routes/getUsers';
+import register from './routes/user/register';
+import login from './routes/user/login';
+import getUsers from './routes/user/getUsers';
+import deleteAllUsers from './routes/user/deleteAllUsers';
+import getUserByEmail from './routes/user/getUserByEmail';
+import { get } from 'http';
 // import cors from 'cors';
 
 
@@ -29,8 +33,11 @@ app.get('/', (req : Request, res : Response) => {
 });
 
 
+register(app);
 login(app);
 getUsers(app);
+getUserByEmail(app);
+deleteAllUsers(app);
 
 app.listen(port, () => {
     console.log(`Server is running on  http://localhost:${port}`);

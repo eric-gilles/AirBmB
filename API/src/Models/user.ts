@@ -20,11 +20,14 @@ const UserSchema: Schema = new Schema({
 // Create and export the model
 const User = mongoose.model<IUser>('User', UserSchema);
 export default User;
+type getUsers = () => Promise<IUser[]>;
+type getUserByEmail = (email : string) => Promise<IUser>;
+type createUser = (user : IUser) => Promise<IUser>;
+type deleteUserByEmail = (email : string) => Promise<IUser>;
+type updateUserByEmail = (email : string, user : IUser) => Promise<IUser>;
+
 export const getUsers = async () => User.find();
 export const getUserByEmail = async (email : string) => User.findOne({email});
-export const createUser = async (user : IUser) => {
-    console.log(user);
-    return await User.create(user).then((user) => user.save())
-};
+export const createUser = async (user : IUser) => await User.create(user).then((user) => user.save());
 export const deleteUserByEmail = async (email : string) => User.findByIdAndDelete(email);
 export const updateUserByEmail = async (email : string, user : IUser) => User.findOneAndUpdate({email}, user);
