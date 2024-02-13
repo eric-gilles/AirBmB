@@ -7,6 +7,7 @@ import login from './routes/user/login';
 import getUsers from './routes/user/getUsers';
 import deleteAllUsers from './routes/user/deleteAllUsers';
 import getUserByEmail from './routes/user/getUserByEmail';
+import updateUser from './routes/user/updateUser';
 import { get } from 'http';
 // import cors from 'cors';
 
@@ -38,6 +39,7 @@ login(app);
 getUsers(app);
 getUserByEmail(app);
 deleteAllUsers(app);
+updateUser(app);
 
 app.listen(port, () => {
     console.log(`Server is running on  http://localhost:${port}`);

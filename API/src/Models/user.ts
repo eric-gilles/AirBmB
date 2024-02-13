@@ -27,6 +27,7 @@ type deleteUserByEmail = (email : string) => Promise<IUser>;
 type updateUserByEmail = (email : string, user : IUser) => Promise<IUser>;
 
 export const getUsers = async () => User.find();
+export const getUserById = async (id : string) => User.findById(id);
 export const getUserByEmail = async (email : string) => User.findOne({email});
 export const createUser = async (user : IUser) => await User.create(user).then((user) => user.save());
 export const deleteUserByEmail = async (email : string) => User.findByIdAndDelete(email);
