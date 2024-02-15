@@ -1,7 +1,8 @@
 
 import mongoose, { Schema, Document } from 'mongoose';
-
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 export interface IBooking extends Document {
+    _id : Number;
     idBooking: string;
     property: Schema.Types.ObjectId;
     renterEmail: Schema.Types.ObjectId;
@@ -11,8 +12,8 @@ export interface IBooking extends Document {
 }
 
 
-const bookingSchema: Schema = new Schema({
-    idLocation: { type: String, required: true },
+const BookingSchema: Schema = new Schema({
+    idBooking: { type: Number, required: true },
     property: { type: Schema.Types.ObjectId, ref: 'Property' },
     renterEmail: { type: Schema.Types.ObjectId, ref: 'User', required: true },
     startDate: { type: Date, required: true },
@@ -20,7 +21,9 @@ const bookingSchema: Schema = new Schema({
     review: { type: String },
 });
 
-const Booking = mongoose.model<IBooking>('Booking', bookingSchema);
+BookingSchema.plugin(AutoIncrement, { inc_field: 'idBooking' });
+
+const Booking = mongoose.model<IBooking>('Booking', BookingSchema);
 export default Booking;
 
 export const getBookings = async () => Booking.find();

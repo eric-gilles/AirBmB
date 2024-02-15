@@ -1,4 +1,5 @@
 import mongoose,{ Schema, Document } from 'mongoose';
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 
 // Define the schema
 export interface IProperty extends Document {
@@ -14,7 +15,7 @@ export interface IProperty extends Document {
 }
 
 const PropertySchema = new Schema({
-    idProperty: { type: String, required: true, unique: true },
+    idProperty: { type: Number, required: true, unique: true },
     mailOwner:  { type: Schema.Types.ObjectId, ref: 'User' },
     city: { type: String, required: true },
     street: { type: String, required: true },
@@ -25,6 +26,7 @@ const PropertySchema = new Schema({
     price: { type: Number, required: true }
 });
 
+PropertySchema.plugin(AutoIncrement, {inc_field: 'idProperty'});
 
 const Property = mongoose.model<IProperty>('Property', PropertySchema);
 export default Property;
@@ -33,6 +35,6 @@ export default Property;
 export const getProperties = async () => Property.find();
 export const getPropertiyById = async (id : string) => Property.findById(id);
 export const createProperty = async (property : IProperty) => Property.create(property).then((property) => property.save());
-export const deletePropertyById = async (id : string) => Property.findByIdAndDelete(id);
-export const updatePropertyById = async (id : string, property : IProperty) => Property.findOneAndUpdate({idProperty:id}, property);
+export const deletePropertyById = async (idProperty : number) => Property.findOneAndDelete({ idProperty });
+export const updatePropertyById = async (idProperty : string, property : IProperty) => Property.findOneAndUpdate({idProperty}, property);
 
