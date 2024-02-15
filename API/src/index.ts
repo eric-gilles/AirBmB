@@ -9,6 +9,7 @@ import deleteAllUsers from './routes/user/deleteAllUsers';
 import getUserByEmail from './routes/user/getUserByEmail';
 import updateUser from './routes/user/updateUser';
 import { get } from 'http';
+import load_booking_routes from './helpers/load_booking_routes';
 // import cors from 'cors';
 
 
@@ -40,6 +41,8 @@ getUsers(app);
 getUserByEmail(app);
 deleteAllUsers(app);
 updateUser(app);
+
+load_booking_routes(app);
 
 app.listen(port, () => {
     console.log(`Server is running on  http://localhost:${port}`);

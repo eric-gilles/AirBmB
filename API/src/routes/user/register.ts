@@ -11,7 +11,7 @@ export default (app: Express) => {
             const createdUser = await createUser(user)
             return res.status(201).json({message: 'Succeed', User: createdUser});
         } catch (err) {
-            return res.status(500).json({message: 'Failed', error: 'Email already exists'});
+            return res.status(500).json({message: 'Failed', error: 'User already exists'});
         }
     });
 }
