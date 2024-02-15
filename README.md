@@ -9,8 +9,8 @@ Modélisation et création d’une base de données gérée par MongoDB :
 La base comportera au moins les trois collections suivantes :
 
 - **Utilisateurs** : mail, prénom, nom, téléphone
-- **Biens** : idBien, mailProprio (*), commune, rue, cp, nbCouchages, nbChambres, distance, prix
-- **Locations** : idLocation, idBien (*), mailLoueur (*), dateDébut (*), dateFin (*), avis
+- **Biens** : idBien, mailProprio (\*), commune, rue, cp, nbCouchages, nbChambres, distance, prix
+- **Locations** : idLocation, idBien (\*), mailLoueur (\*), dateDébut (\*), dateFin (\*), avis
 
 (*) "clef étrangère" (**) Les dates seront exprimées sous la forme de nombres à 8 chiffres de type AAAAMMJJ.
 
