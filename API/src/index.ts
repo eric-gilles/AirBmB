@@ -4,6 +4,7 @@ import {connectToDatabase} from './db/db_initialiser';
 import bodyParser from 'body-parser';
 import load_user_routes from './helpers/load_user_routes';
 import load_property_routes from './helpers/load_property_routes';
+import load_booking_routes from './helpers/load_booking_routes';
 // import cors from 'cors';
 
 
@@ -30,9 +31,7 @@ app.get('/', (req : Request, res : Response) => {
 
 load_user_routes(app);
 load_property_routes(app);
-
-
-
+load_booking_routes(app);
 
 app.listen(port, () => {
     console.log(`Server is running on  http://localhost:${port}`);
