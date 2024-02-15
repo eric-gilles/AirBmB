@@ -2,13 +2,8 @@ import express, {Request , Response} from 'express';
 import dotenv from 'dotenv';
 import {connectToDatabase} from './db/db_initialiser';
 import bodyParser from 'body-parser';
-import register from './routes/user/register';
-import login from './routes/user/login';
-import getUsers from './routes/user/getUsers';
-import deleteAllUsers from './routes/user/deleteAllUsers';
-import getUserByEmail from './routes/user/getUserByEmail';
-import updateUser from './routes/user/updateUser';
-import { get } from 'http';
+import load_user_routes from './helpers/load_user_routes';
+import load_property_routes from './helpers/load_property_routes';
 // import cors from 'cors';
 
 
@@ -33,13 +28,11 @@ app.get('/', (req : Request, res : Response) => {
     res.send('Hello World!');
 });
 
+load_user_routes(app);
+load_property_routes(app);
 
-register(app);
-login(app);
-getUsers(app);
-getUserByEmail(app);
-deleteAllUsers(app);
-updateUser(app);
+
+
 
 app.listen(port, () => {
     console.log(`Server is running on  http://localhost:${port}`);

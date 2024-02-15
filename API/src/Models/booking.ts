@@ -26,6 +26,6 @@ export default Booking;
 export const getBookings = async () => Booking.find();
 export const getBookingById = async (id : string) => Booking.findById(id);
 export const createBooking = async (booking : IBooking) => Booking.create(booking).then((booking) => booking.save());
-export const deleteUserById = async (id : string) => Booking.findByIdAndDelete(id);
-export const updateUserById = async (id : string, booking : IBooking) => Booking.findOneAndUpdate({idBooking:id}, booking);
+export const deleteBookingById = async (id : string) => Booking.findByIdAndDelete(id);
+export const updateBookingById = async (id : string, booking : IBooking) => Booking.findOneAndUpdate({idBooking:id}, booking);
 

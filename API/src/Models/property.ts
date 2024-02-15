@@ -2,7 +2,7 @@ import mongoose,{ Schema, Document } from 'mongoose';
 
 // Define the schema
 export interface IProperty extends Document {
-    idProperty: string;
+    idProperty: {type : Number, required : true, unique : true};
     mailOwner: Schema.Types.ObjectId;
     city: string;
     street: string; // Nom de la rue
@@ -32,7 +32,7 @@ export default Property;
 
 export const getProperties = async () => Property.find();
 export const getPropertiyById = async (id : string) => Property.findById(id);
-export const createUser = async (property : IProperty) => Property.create(property).then((property) => property.save());
+export const createProperty = async (property : IProperty) => Property.create(property).then((property) => property.save());
 export const deletePropertyById = async (id : string) => Property.findByIdAndDelete(id);
 export const updatePropertyById = async (id : string, property : IProperty) => Property.findOneAndUpdate({idProperty:id}, property);
 
