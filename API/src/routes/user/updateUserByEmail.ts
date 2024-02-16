@@ -1,8 +1,9 @@
 import { updateUserByEmail, getUserByEmail } from "../../Models/user";
 import { Express, Request, Response } from "express";
+import { isEmailValidMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-    app.put('/user/', async (req: Request, res: Response) => {
+    app.put('/user/', isEmailValidMiddleware, async (req: Request, res: Response) => {
         const { email } = req.body;
 
         try {
@@ -25,7 +26,7 @@ export default (app: Express) => {
             // Mettre à jour l'utilisateur dans la base de données
             await updateUserByEmail(email, user);
 
-            return res.status(200).json({ message: 'Success', user });
+            return res.status(200).json({ message: 'Success', updated: user });
         } catch (err) {
             return res.status(500).json({ message: 'Failed', error: 'An error occured' });
         }

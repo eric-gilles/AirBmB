@@ -1,10 +1,11 @@
 import { IUser, getUserByEmail} from "../../Models/user";
 import { Express, Request, Response } from "express";
+import { loginMiddleware } from "../../helpers/middleware";
 
 
 
 export default (app: Express) => {
-    app.post('/login', async (req: Request, res: Response) => {
+    app.post('/login', loginMiddleware ,async (req: Request, res: Response) => {
         const { email, password } = req.body;
         try {
             const user: IUser | null = await getUserByEmail(email)

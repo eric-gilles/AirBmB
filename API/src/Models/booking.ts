@@ -4,8 +4,8 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 export interface IBooking extends Document {
     _id : Number;
     idBooking: string;
-    property: Schema.Types.ObjectId;
-    renterEmail: Schema.Types.ObjectId;
+    property: Number;
+    renterEmail: string;
     startDate: Date;
     endDate: Date;
     review?: string;
@@ -14,8 +14,8 @@ export interface IBooking extends Document {
 
 const BookingSchema: Schema = new Schema({
     idBooking: { type: Number, required: true },
-    property: { type: Schema.Types.ObjectId, ref: 'Property' },
-    renterEmail: { type: Schema.Types.ObjectId, ref: 'User', required: true },
+    property: { type: Number, ref: 'Property.idProperty' },
+    renterEmail: { type: String, ref: 'User.email', required: true },
     startDate: { type: Date, required: true },
     endDate: { type: Date, required: true },
     review: { type: String },

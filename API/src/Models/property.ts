@@ -4,7 +4,7 @@ const AutoIncrement = require('mongoose-sequence')(mongoose);
 // Define the schema
 export interface IProperty extends Document {
     idProperty: {type : Number, required : true, unique : true};
-    mailOwner: Schema.Types.ObjectId;
+    mailOwner: string;
     city: string;
     street: string; // Nom de la rue
     zipCode: string;
@@ -12,18 +12,20 @@ export interface IProperty extends Document {
     numBedrooms: number; // Nombre de chambres
     distance: number;
     price: number;
+    review?: string;
 }
 
 const PropertySchema = new Schema({
     idProperty: { type: Number, required: true, unique: true },
-    mailOwner:  { type: Schema.Types.ObjectId, ref: 'User' },
+    mailOwner:  { type: String, ref: 'User.email', required: true},
     city: { type: String, required: true },
     street: { type: String, required: true },
     zipCode: { type: String, required: true },
     numSleeps: { type: Number, required: true },
     numBedrooms: { type: Number, required: true },
     distance: { type: Number, required: true },
-    price: { type: Number, required: true }
+    price: { type: Number, required: true },
+    review:{ type: String }
 });
 
 PropertySchema.plugin(AutoIncrement, {inc_field: 'idProperty'});
@@ -33,8 +35,8 @@ export default Property;
 
 
 export const getProperties = async () => Property.find();
-export const getPropertiyById = async (id : string) => Property.findById(id);
+export const getPropertyById = async (idProperty : number) => Property.findOne({idProperty});
 export const createProperty = async (property : IProperty) => Property.create(property).then((property) => property.save());
 export const deletePropertyById = async (idProperty : number) => Property.findOneAndDelete({ idProperty });
-export const updatePropertyById = async (idProperty : string, property : IProperty) => Property.findOneAndUpdate({idProperty}, property);
+export const updatePropertyById = async (idProperty : number, property : IProperty) => Property.findOneAndUpdate({idProperty}, property);
 

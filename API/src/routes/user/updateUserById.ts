@@ -25,7 +25,7 @@ export default (app: Express) => {
             // Mettre à jour l'utilisateur dans la base de données
             await updateUserById(id, user);
 
-            return res.status(200).json({ message: 'Success', user });
+            return res.status(200).json({ message: 'Success',updated: user });
         } catch (err) {
             return res.status(500).json({ message: 'Failed', error: 'An error occured' });
         }
