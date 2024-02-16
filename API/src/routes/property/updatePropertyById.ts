@@ -1,8 +1,9 @@
 import { Express, Request, Response } from "express";
 import { getPropertyById, updatePropertyById } from "../../Models/property";
+import { updatePropertyMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-    app.put('/property/:id', async (req : Request, res : Response) => {
+    app.put('/property/:id', updatePropertyMiddleware,async (req : Request, res : Response) => {
         const id = parseInt(req.params.id);
         const { price, mailOwner, city, street, zipCode, numSleeps, numBedrooms, distance } = req.body;
         let property_json : any = {};
