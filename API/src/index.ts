@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 connectToDatabase();
-app.get('/', (req : Request, res : Response) => {
+app.get('/',(req : Request, res : Response) => {
     res.send('Hello World!');
 });
 
@@ -36,3 +36,6 @@ load_booking_routes(app);
 app.listen(port, () => {
     console.log(`Server is running on  http://localhost:${port}`);
 });
+
+
+export default app;

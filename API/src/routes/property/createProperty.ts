@@ -4,7 +4,7 @@ import { IProperty, createProperty } from "../../Models/property";
 
 export default (app: Express) => {
     app.post('/property', async (req : Request, res : Response) => {
-        const { name, description, price, type, mailOwner, city, street, zipCode, numSleeps, numBedrooms, distance } = req.body;
+        const { price, mailOwner, city, street, zipCode, numSleeps, numBedrooms, distance } = req.body;
         const property_json : any = {
             idProperty: 1,
             price,
