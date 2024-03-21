@@ -5,8 +5,8 @@ import getProperty from "../routes/property/getProperty";
 
 import { Express } from "express";
 export default (app: Express) => {
-    createProperty(app);
-    deleteAll(app);
-    updatePropertyById(app);
-    getProperty(app)
+  createProperty(app);
+  deleteAll(app);
+  updatePropertyById(app);
+  getProperty(app);
 };

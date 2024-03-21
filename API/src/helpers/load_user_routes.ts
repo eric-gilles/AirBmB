@@ -9,18 +9,17 @@ import deleteAllUsers from "../routes/user/deleteAllUsers";
 import deleteById from "../routes/user/deleteById";
 import deleteByEmail from "../routes/user/deleteByEmail";
 
-
 import { Express } from "express";
 export default (app: Express) => {
-    register(app);
-    login(app);
-    updateUserByEmail(app);
-    updateUserById(app);
+  register(app);
+  login(app);
+  updateUserByEmail(app);
+  updateUserById(app);
 
-    getUsers(app);
-    getUserByEmail(app);
-    getUserById(app);
-    deleteAllUsers(app);
-    deleteById(app);
-    deleteByEmail(app);
+  getUsers(app);
+  getUserByEmail(app);
+  getUserById(app);
+  deleteAllUsers(app);
+  deleteById(app);
+  deleteByEmail(app);
 };
