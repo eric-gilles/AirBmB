@@ -17,8 +17,9 @@ export default (app: Express) => {
           .status(404)
           .json({ message: "Failed", error: "User not found" });
       }
+
       if (user.password === password) {
-        const token = jwt.sign({ email }, secretKey, { expiresIn: "1h" });
+        const token = jwt.sign({ email, admin:user.isAdmin, id: user.idUser }, secretKey, { expiresIn: "1h" });
 
         return res.status(200).json({ message: "Succeed", User: user, token });
       }

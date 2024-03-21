@@ -8,6 +8,7 @@ export interface IUser extends Document {
   lastName: { type: string; required: true };
   phone: string;
   password: { type: string; required: true; select: false };
+  isAdmin: { type: Boolean, default: false };
 }
 
 // Define the schema
@@ -18,6 +19,7 @@ const UserSchema: Schema = new Schema({
   email: { type: String, required: true, unique: true },
   phone: { type: String },
   password: { type: String, required: true },
+  isAdmin: { type: Boolean, default: false },
 });
 UserSchema.plugin(AutoIncrement, { inc_field: "idUser" });
 

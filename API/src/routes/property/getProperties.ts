@@ -1,17 +1,16 @@
 import { Express, Request, Response } from "express";
-import { getPropertyById } from "../../Models/property";
+import { getProperties } from "../../Models/property";
 import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.get("/property/:id",authMiddleware, async (req: Request, res: Response) => {
-    const id = parseInt(req.params.id);
+  app.get("/properties",authMiddleware , async (req: Request, res: Response) => {
     try {
-      const property: any = await getPropertyById(id);
-      if (!property)
+      const properties: any = await getProperties();
+      if (!properties)
         return res
           .status(404)
           .json({ message: "Failed", error: "Property not found" });
-      return res.status(200).json({ message: "Succeed", property });
+      return res.status(200).json({ message: "Succeed", properties });
     } catch (err) {
       return res
         .status(500)

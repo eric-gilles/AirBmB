@@ -1,8 +1,9 @@
 import { getUserById, updateUserById } from "./../../Models/user";
 import { Express, Request, Response } from "express";
+import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.put("/user/:id", async (req: Request, res: Response) => {
+  app.put("/user/:id",authMiddleware, async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
     try {

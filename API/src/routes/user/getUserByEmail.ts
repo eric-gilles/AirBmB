@@ -1,8 +1,9 @@
 import { getUserByEmail } from "./../../Models/user";
 import { Express, Request, Response } from "express";
+import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.get("/user", async (req: Request, res: Response) => {
+  app.get("/user",authMiddleware, async (req: Request, res: Response) => {
     const { email } = req.body;
     try {
       const user = await getUserByEmail(email);

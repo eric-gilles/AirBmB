@@ -12,7 +12,7 @@ export interface IBooking extends Document {
 
 const BookingSchema: Schema = new Schema({
   idBooking: { type: Number, required: true },
-  idPropery: { type: Number, ref: "Property.idProperty" },
+  idProperty: { type: Number, ref: "Property.idProperty" },
   renterEmail: { type: String, ref: "User.email", required: true },
   startDate: { type: Date, required: true },
   endDate: { type: Date, required: true },
@@ -28,6 +28,12 @@ export default Booking;
 export const getBookings = async () => Booking.find();
 export const getBookingById = async (idBooking: number) =>
   Booking.findOne({ idBooking });
+export const getBookingByPropertyId = async (idProperty: number) => {
+  console.log(idProperty);
+  const booking = await Booking.find({ idProperty });
+  console.log(booking);
+  return booking;
+};
 export const createBooking = async (booking: IBooking) =>
   Booking.create(booking).then((booking) => booking.save());
 export const deleteBookingById = async (idBooking: number) =>

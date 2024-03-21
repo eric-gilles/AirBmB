@@ -1,8 +1,9 @@
 import { getUserById } from "./../../Models/user";
 import { Express, Request, Response } from "express";
+import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.get("/user/:id", async (req: Request, res: Response) => {
+  app.get("/user/:id",authMiddleware, async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     const user = await getUserById(id).catch((err) => {
       return res.status(500).json({ message: "Failed", error: err });

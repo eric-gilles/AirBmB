@@ -1,10 +1,12 @@
 import { deleteUserByEmail } from "./../../Models/user";
 import { Express, Request, Response } from "express";
 import { isEmailValidMiddleware } from "../../helpers/middleware";
+import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
   app.delete(
     "/user/delete/",
+    authMiddleware,
     isEmailValidMiddleware,
     async (req: Request, res: Response) => {
       const { email } = req.body;

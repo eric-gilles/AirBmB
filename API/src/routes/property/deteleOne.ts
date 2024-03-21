@@ -1,8 +1,9 @@
 import { Express, Request, Response } from "express";
 import { deletePropertyById } from "../../Models/property";
+import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.delete("/user/delete/:id", async (req: Request, res: Response) => {
+  app.delete("/user/delete/:id",authMiddleware, async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     try {
       const property = await deletePropertyById(id);

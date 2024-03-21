@@ -1,10 +1,12 @@
 import { Express, Request, Response } from "express";
 import { getPropertyById, updatePropertyById } from "../../Models/property";
 import { updatePropertyMiddleware } from "../../helpers/middleware";
+import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
   app.put(
     "/property/:id",
+    authMiddleware,
     updatePropertyMiddleware,
     async (req: Request, res: Response) => {
       const id = parseInt(req.params.id);
