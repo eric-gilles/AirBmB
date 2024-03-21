@@ -1,0 +1,74 @@
+/* Form */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-header {
+    background-color: #e67287;
+    color: #484848;
+    font-weight: bold;
+    font-size: 30px;
+    padding: 5px;
+    margin-bottom: #e67287;
+    margin-bottom: -1px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+  }
+  
+  .card-body {
+    margin-top: 0;
+    padding: 10px;
+    background-color: #e67287;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+  }
+  
+  .form-group {
+    margin-bottom: 24px;
+  }
+
+  .form-group label {
+    font-weight: bold;
+  }
+  
+  .form-control {
+    width: 100%;
+    border: 1px solid #3f3232;
+    border-radius: 8px;
+    padding: 8px;
+    font-size: 16px;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  }
+  
+  .form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .btn-primary {
+    background-color: #FF385C;
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.15s ease-in-out;
+  }
+  
+  .btn-primary:hover {
+    background-color: #f71942;
+  }
+
+  input {
+    font-size: 14px;;
+    padding: 8px;
+    width: 20px;
+    background-color: #e2dada;
+  }
+  .form-group label + input {
+    margin-top: 5px;
+}
