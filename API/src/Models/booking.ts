@@ -26,10 +26,11 @@ const Booking = mongoose.model<IBooking>("Booking", BookingSchema);
 export default Booking;
 
 export const getBookings = async () => Booking.find();
-export const getBookingById = async (idBooking: number) => Booking.findOne({idBooking});
+export const getBookingById = async (idBooking: number) =>
+  Booking.findOne({ idBooking });
 export const createBooking = async (booking: IBooking) =>
   Booking.create(booking).then((booking) => booking.save());
 export const deleteBookingById = async (idBooking: number) =>
-  Booking.findByIdAndDelete({idBooking});
+  Booking.findByIdAndDelete({ idBooking });
 export const updateBookingById = async (idBooking: number, booking: IBooking) =>
   Booking.findOneAndUpdate({ idBooking }, booking);

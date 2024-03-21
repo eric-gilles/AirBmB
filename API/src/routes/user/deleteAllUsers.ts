@@ -1,4 +1,4 @@
-import User from "./../../Models/user"
+import User from "./../../Models/user";
 import { Express, Request, Response } from "express";
 
 export default (app: Express) => {

@@ -22,7 +22,9 @@ export const createPropertySchema = Joi.object({
   numSleeps: Joi.number().required(),
   numBedrooms: Joi.number().required(),
   distance: Joi.number().required(),
+  loggedUserEmail: Joi.string().email().required(),
 });
+
 export const emailUserSchema = Joi.object({
   email: Joi.string().email().required(),
 });
@@ -36,9 +38,11 @@ export const updatePropertySchema = Joi.object({
   numSleeps: Joi.number().optional(),
   numBedrooms: Joi.number().optional(),
   distance: Joi.number().optional(),
+  loggedUserEmail: Joi.string().email().required(),
 });
 
-const dateRegex = /^(0[1-9]|[1-2][0-9]|3[0-1])[\/\-](0[1-9]|1[0-2])[\/\-](\d{4})$/;
+const dateRegex =
+  /^(0[1-9]|[1-2][0-9]|3[0-1])[\/\-](0[1-9]|1[0-2])[\/\-](\d{4})$/;
 export const createBookingSchema = Joi.object({
   idProperty: Joi.number().required(),
   renterEmail: Joi.string().email().required(),
@@ -46,4 +50,5 @@ export const createBookingSchema = Joi.object({
   endDate: Joi.string().regex(dateRegex).required(),
   nbGuests: Joi.number().required(),
   review: Joi.string().optional(),
+  loggedUserEmail: Joi.string().email().required(),
 });

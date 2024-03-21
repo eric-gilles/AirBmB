@@ -8,7 +8,14 @@ import {
   createBookingSchema,
 } from "./validation_schema";
 import dateParser from "./dateParser";
-export function loginMiddleware(req: Request, res: Response, next: NextFunction) {
+import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
+dotenv.config();
+export function loginMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   validateMiddleware(loginSchema)(req, res, next);
 }
 
@@ -42,15 +49,14 @@ export function updatePropertyMiddleware(
 }
 
 export function createBookingMiddleware(
-    req: Request,
-    res: Response,
-    next: NextFunction,
-    ) {
-    validateMiddleware(createBookingSchema)(req, res, next);
-    }
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  validateMiddleware(createBookingSchema)(req, res, next);
+}
 function validateMiddleware(schema: any) {
   return (req: Request, res: Response, next: NextFunction) => {
-    
     const { error, value } = schema.validate(req.body);
     if (error) {
       return res
@@ -61,29 +67,57 @@ function validateMiddleware(schema: any) {
   };
 }
 
+export function validateDateMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  const { startDate, endDate } = req.body;
 
+  const startDateObj = dateParser(startDate);
+  const endDateObj = dateParser(endDate);
 
-export function validateDateMiddleware(req: Request, res: Response, next: NextFunction) {
-    const { startDate, endDate } = req.body;
+  // Vérifier si startDate et endDate sont des dates valides
+  if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
+    return res
+      .status(400)
+      .json({ message: "Les dates de début et de fin ne sont pas valides." });
+  }
 
-    const startDateObj = dateParser(startDate);
-    const endDateObj = dateParser(endDate);
+  // Vérifier si startDate est avant endDate
+  if (startDateObj >= endDateObj) {
+    return res
+      .status(400)
+      .json({
+        message: "La date de début doit être antérieure à la date de fin.",
+      });
+  }
 
-    // Vérifier si startDate et endDate sont des dates valides
-    if (isNaN(startDateObj.getTime()) || isNaN(endDateObj.getTime())) {
-        return res.status(400).json({ message: "Les dates de début et de fin ne sont pas valides." });
-    }
+  // Mettre à jour le corps de la requête avec les dates en tant qu'objets Date
+  req.body.startDate = startDateObj;
+  req.body.endDate = endDateObj;
 
-    // Vérifier si startDate est avant endDate
-    if (startDateObj >= endDateObj) {
-        return res.status(400).json({ message: "La date de début doit être antérieure à la date de fin." });
-    }
-
-    // Mettre à jour le corps de la requête avec les dates en tant qu'objets Date
-    req.body.startDate = startDateObj;
-    req.body.endDate = endDateObj;
-
-    // Passer au prochain middleware
-    next();
+  // Passer au prochain middleware
+  next();
 }
 
+export function authMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
+  const token = req.headers.authorization?.split(" ")[1]; // Récupérer le JWT du header Authorization
+
+  if (!token) {
+    return res.status(401).json({ message: "Non autorisé. Token manquant." });
+  }
+
+  try {
+    const decoded: any = jwt.verify(token, process.env.SECRET_KEY!);
+    //TOKEN DECODED
+    req.body.loggedUserEmail = decoded.email;
+    next();
+  } catch (error) {
+    return res.status(401).json({ message: "Non autorisé. Token invalide." });
+  }
+}
