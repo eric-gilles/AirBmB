@@ -12,13 +12,14 @@ La base comportera au moins les trois collections suivantes :
 - **Biens** : idBien, mailProprio (\*), commune, rue, cp, nbCouchages, nbChambres, distance, prix
 - **Locations** : idLocation, idBien (\*), mailLoueur (\*), dateDébut (\*), dateFin (\*), avis
 
-(*) "clef étrangère" (**) Les dates seront exprimées sous la forme de nombres à 8 chiffres de type AAAAMMJJ.
+(\*) "clef étrangère" (\*\*) Les dates seront exprimées sous la forme de nombres à 8 chiffres de type AAAAMMJJ.
 
 Les documents des collections Utilisateurs et Biens peuvent être directement créés dans la base.
 
 L’internaute pourra :
 
 - Faire une recherche multicritères (de 0 à 7) suivant :
+
   - la date de début de location
   - la date de fin de location
   - la commune
@@ -44,6 +45,7 @@ Le travail devra être préférentiellement effectué en binômes.
 Le rendu se fera par une démonstration sur machine et un dépôt via le Moodle de HAI806I (le dépôt n’est pas encore ouvert). Il constituera en une archive (zip ou tar) qui contiendra :
 
 - un mini-rapport comportant :
+
   - les noms des membres du groupe
   - le script de création des collections/documents de la base MongoDB initiale
   - la liste des services web (méthodes et routes)
