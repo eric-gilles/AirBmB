@@ -1,0 +1,24 @@
+.header h1 {
+    color: #fff;
+    text-align: center;
+  }
+
+  .navbar-nav {
+    margin: auto;
+  }
+
+  .navbar-nav .nav-item {
+    margin-right: 15px;
+  }
+  
+  .navbar-nav .nav-link {
+    padding-right: 0;
+  }
+
+  .item-right {
+    padding-left: 50%;
+  }
+
+  .item-left {
+    padding-right: 0%;
+  }
