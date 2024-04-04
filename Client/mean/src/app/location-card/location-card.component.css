@@ -1,0 +1,52 @@
+.listing {
+    background-color: #fff;
+    width: 400px;
+    height: auto;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
+  }
+
+  
+  .listing-photo {
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+  }
+  
+  .listing h2 {
+    margin-bottom: 10px;
+    color: black;
+    font-size: 24px;
+  }
+  
+  .listing p {
+    margin-bottom: 10px;
+    color: #666;
+    font-size: 16px;
+  }
+  
+  .listing-location {
+    font-weight: bold;
+  }
+  
+  .listing .price {
+    color: #000; /* Noir */
+    font-size: 18px;
+
+  }
+  
+  .listing .review {
+    font-style: italic;
+  }
+  
+  /* Ajoutez d'autres styles au besoin */
+  
+  
+  
+  
+  /*.listing-location::before {
+    content: url("/assets/location-pin.svg") / "";
+  }*/
+  
