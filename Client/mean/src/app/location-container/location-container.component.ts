@@ -20,7 +20,7 @@ export class LocationContainerComponent {
     numBedrooms: 3,
     distance: 7.5,
     price: 45,
-    review: "Superbe maison",
+    review: 4.5,
     photo: "../assets/image.jpg"
   };
 }

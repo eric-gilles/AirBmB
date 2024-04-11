@@ -8,6 +8,6 @@ export interface IProperty {
     numBedrooms: number; // Nombre de chambres
     distance: number;
     price: number;
-    review: string;
+    review: number;
     photo: string;
 }
