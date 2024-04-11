@@ -1,5 +1,7 @@
-<location-card [property]="property"></location-card>
-<location-card [property]="property"></location-card>
-<location-card [property]="property"></location-card>
-<location-card [property]="property"></location-card>
-<location-card [property]="property"></location-card>
+<app-header></app-header>
+
+<ng-container *ngFor="let propertyItem of properties">
+    <location-card [property]="propertyItem"></location-card>
+</ng-container>
+
+<app-footer></app-footer>
