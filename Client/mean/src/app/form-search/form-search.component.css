@@ -1,13 +1,15 @@
 /* Form */
-.card {
+  .card {
     border: none;
     border-radius: 12px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 250%;
+    margin: center;
   }
   
   .card-header {
     background-color: #e67287;
-    color: #484848;
+    color: #292828;
     font-weight: bold;
     font-size: 30px;
     padding: 5px;
@@ -19,7 +21,7 @@
   
   .card-body {
     margin-top: 0;
-    padding: 10px;
+    padding: 20px;
     background-color: #e67287;
     border-bottom-left-radius: 12px;
     border-bottom-right-radius: 12px;
@@ -34,7 +36,7 @@
   }
   
   .form-control {
-    width: 100%;
+    width: calc(100% - 16px); 
     border: 1px solid #3f3232;
     border-radius: 8px;
     padding: 8px;
@@ -49,7 +51,7 @@
   }
   
   .btn-primary {
-    background-color: #FF385C;
+    background-color: #573b8a;
     border: none;
     border-radius: 8px;
     padding: 12px 24px;
@@ -60,7 +62,7 @@
   }
   
   .btn-primary:hover {
-    background-color: #f71942;
+    background-color: #573b8a;
   }
 
   input {
@@ -71,4 +73,4 @@
   }
   .form-group label + input {
     margin-top: 5px;
-}
+  }
