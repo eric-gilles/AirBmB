@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { LocationContainerComponent } from './location-container/location-container.component';
 import { LocationComponent } from './location/location.component';
+import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 export const routes: Routes = [
     {
@@ -41,5 +42,10 @@ export const routes: Routes = [
         path: 'error',
         component : ErrorComponent,
         title: 'Error'
+    },
+    {
+        path: 'basket',
+        component : ShoppingCartComponent,
+        title: 'Shopping Cart'
     }
 ];
