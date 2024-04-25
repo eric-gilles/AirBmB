@@ -5,15 +5,22 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterOutlet } from '@angular/router';
 import { HeroComponent } from './hero/hero.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, HomeComponent, LocationContainerComponent, HeaderComponent, FooterComponent, HeroComponent],
+  imports: [
+    RouterOutlet,
+    HomeComponent,
+    LocationContainerComponent,
+    HeaderComponent,
+    FooterComponent,
+    HeroComponent,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'my-app';
-  
 }
