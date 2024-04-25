@@ -3,12 +3,18 @@
 <div class="main container-fluid">
 	<div class="login">
 		<form>
-			<label for="chk" aria-hidden="true">Login</label>
-			<input type="email" name="email" placeholder="Email" required="">
-			<input type="password" name="pswd" placeholder="Password" required="">
+			<label class="chk" aria-hidden="true"><b>Login</b></label>
+			<div class="input-container">
+				<input type="email" name="email" required placeholder="">
+				<label id="emailLabel">Email</label>
+			</div>
+			<div class="input-container">
+				<input type="password" name="pswd" required placeholder="">
+				<label id="passwordLabel">Password</label>
+			</div>
 			<button>Login</button>
 			<br/>
-			<a href="/signup" id="signup-link">Don't have an account? Sign up</a>
+			<div><a href="/signup" id="signup-link">Don't have an account? Sign up</a></div>
 		</form>
 	</div>
 </div>
