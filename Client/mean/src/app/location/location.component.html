@@ -1,1 +1,22 @@
-<p>location works!</p>
+<app-header></app-header>
+<div class="location-details">
+    <h2>Location Details</h2>
+    <div class="details">
+      <img src="{{ property.photo }}" alt="Property Photo" class="property-photo">
+      <p><strong>City:</strong> {{ property.city }}</p>
+      <p><strong>Street:</strong> {{ property.street }}</p>
+      <p><strong>Zip Code:</strong> {{ property.zipCode }}</p>
+      <p><strong>Number of Sleeps:</strong> {{ property.numSleeps }}</p>
+      <p><strong>Number of Bedrooms:</strong> {{ property.numBedrooms }}</p>
+      <p><strong>Distance to City Center:</strong> {{ property.distance }} km</p>
+      <p><strong>Price per Night:</strong> {{ property.price }}€ </p>
+      <p><strong>Review Score:</strong> {{ property.review }}</p>
+    </div>
+    <button class="confirm-button">Confirmer la location</button>
+</div>
+<div id="map"></div>
+
+
+  
+
+<app-footer></app-footer>

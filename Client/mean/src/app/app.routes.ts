@@ -4,12 +4,18 @@ import { SignupComponent } from './signup/signup.component';
 import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { LocationContainerComponent } from './location-container/location-container.component';
+import { LocationComponent } from './location/location.component';
 
 export const routes: Routes = [
     {
         path: '',
         redirectTo: 'home',
         pathMatch: 'full'
+    },
+    {
+        path: 'location',
+        component: LocationComponent,
+        title: 'Location'
     },
     {
         path:'locations', 
