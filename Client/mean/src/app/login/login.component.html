@@ -1,16 +1,36 @@
 <app-header></app-header>
 
 <div class="main container-fluid">
-	<div class="login">
-		<form #f="ngForm" (ngSubmit)="onSubmit()">
-			<label for="chk" aria-hidden="true">Login</label>
-			<input type="email" name="email" placeholder="Email" [(ngModel)]="user.email" required="">
-			<input type="password" name="pswd" placeholder="Password" [(ngModel)]="user.password" required="">
-			<button type="submit">Login</button>
-			<br/>
-			<a href="/signup" id="signup-link">Don't have an account? Sign up</a>
-		</form>
-	</div>
+  <div class="login">
+    <form #f="ngForm" (ngSubmit)="onSubmit()">
+      <label class="chk" aria-hidden="true"><b>Login</b></label>
+      <div class="input-container">
+        <input
+          type="email"
+          name="email"
+          [(ngModel)]="user.email"
+          required
+          placeholder=""
+        />
+        <label id="emailLabel">Email</label>
+      </div>
+      <div class="input-container">
+        <input
+          type="password"
+          name="pswd"
+          [(ngModel)]="user.password"
+          required
+          placeholder=""
+        />
+        <label id="passwordLabel">Password</label>
+      </div>
+      <button>Login</button>
+      <br />
+      <div>
+        <a href="/signup" id="signup-link">Don't have an account? Sign up</a>
+      </div>
+    </form>
+  </div>
 </div>
 
 <app-footer></app-footer>

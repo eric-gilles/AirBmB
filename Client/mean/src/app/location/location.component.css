@@ -1,46 +1,77 @@
 .location-details {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .location-details h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
-  .details {
-    margin-bottom: 20px;
-  }
-  
-  .details p {
-    margin: 10px 0;
-  }
-  
-  .property-photo {
-    width: 100%;
-    max-width: 300px;
-    height: auto;
-    display: block;
-    margin-bottom: 20px;
-  }
-  
-  .confirm-button {
-    padding: 10px 20px;
-    background-color: #ff5a5f;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .confirm-button:hover {
-    background-color: #d5444b;
-  }
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid #f0f0f0;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-  #map { height: 180px; }
+.location-details h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+  color: #333;
+}
 
+.details {
+  margin-bottom: 20px;
+}
+
+.details p {
+  margin: 10px 0;
+  color: #666;
+}
+
+.property-photo {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  display: block;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.confirm-button {
+  padding: 12px 24px;
+  background-color: #ff585d;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.confirm-button:hover {
+  background-color: #ff3338;
+}
+
+.map-responsive{
+  overflow: hidden;
+  padding-bottom: 56.25%;
+  position: relative;
+  height: 0;
   
+}
+
+.map-responsive iframe{
+  left: 20em;
+  top: 2em;
+  height: 70%;
+  width: 70%;
+  position: absolute;
+  border-radius: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.map-title {
+  margin-top: 3em;
+  font-size: 24px;
+  color: #333;
+  text-align: center;
+}
+
+.map-title h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
