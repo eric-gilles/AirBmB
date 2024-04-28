@@ -25,8 +25,17 @@ export class LocationContainerComponent {
   constructor(private propertyService: PropertyService) {}
 
   ngOnInit() {
-    this.propertyService.getProperties().subscribe((data: any) => {
-      this.properties = data.properties;
+    const filtered = this.propertyService.getPropertiesFiltered();
+    if (filtered.length > 0) {
+      this.properties = filtered;
+      return;
+    }
+    this.propertyService.getProperties().subscribe((response) => {
+      if (response.message === 'Succeed') {
+        this.properties = response.properties;
+        return;
+      }
     });
+    
   }
 }

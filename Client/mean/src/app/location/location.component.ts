@@ -22,8 +22,8 @@ export class LocationComponent {
 
   ngOnInit() {
     this.propertyId = this.route.snapshot.paramMap.get('id')!;
-    this.propertyService.getProperty(this.propertyId).subscribe((data: any) => {
-      this.property = data.property;
+    this.propertyService.getProperty(this.propertyId).subscribe((response) => {
+      this.property = response.property;
     });
   }
 }

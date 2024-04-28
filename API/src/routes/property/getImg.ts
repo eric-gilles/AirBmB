@@ -15,6 +15,6 @@ export default (app: Express) => {
         return res.status(200).sendFile(img);
       }
     }
-    return res.status(404).json({ message: "Image non trouvée" });
+    return res.status(404).json({ message: "Failed" });
   });
 };

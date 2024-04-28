@@ -3,6 +3,7 @@ import { HeroComponent } from '../hero/hero.component';
 import { PropertyService } from '../services/property.service';
 import { Form, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-search',
   standalone: true,
@@ -20,17 +21,21 @@ export class FormSearchComponent {
     minBeds: '',
     maxDistance: '',
   };
-  constructor(private propertyService: PropertyService) {}
+  constructor(
+    private propertyService: PropertyService,
+    private router: Router
+  ) {}
 
-  onSubmit(): void {
+  onSubmit() {
     console.log(this.criteria);
-    this.propertyService.getPropertyAvailable(this.criteria).subscribe(
-      (response: Response) => {
-        console.log('Properties found:', response);
-      },
-      (error: Error) => {
-        console.error('Error while searching:', error);
-      }
-    );
+    this.propertyService
+      .getPropertyAvailable(this.criteria)
+      .subscribe((response) => {
+        if (response.message === 'Succeed') {
+          this.propertyService.setPropertiesFiltered(response.properties);
+          console.log(response);
+          this.router.navigate(['/locations']);
+        }
+      });
   }
 }

@@ -5,7 +5,7 @@ import { getPropertyAvailability } from "../../Models/booking";
 import { filterPropertiesResearch } from "../../helpers/filterResearch";
 
 export default (app: Express) => {
-  app.get(
+  app.post(
     "/properties/available",
     validateDateMiddleware,
     async (req: Request, res: Response) => {

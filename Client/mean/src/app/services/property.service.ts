@@ -15,23 +15,31 @@ export class PropertyService {
       'Access-Control-Allow-Origin': '*',
     }),
   };
+  private filtered: any = [];
 
   constructor(private http: HttpClient) {}
 
-  getProperties(): any {
+  getProperties() {
     return this.http.get<any>(`${this.API_URL}/properties`, this.httpOptions);
   }
-  getProperty(id: string): any {
+  getProperty(id: string) {
     return this.http.get<any>(
       `${this.API_URL}/property/${id}`,
       this.httpOptions
     );
   }
-  getPropertyAvailable(criteria: any): any {
+  getPropertyAvailable(criteria: any) {
     return this.http.post<any>(
       `${this.API_URL}/properties/available`,
       criteria,
       this.httpOptions
     );
+  }
+  getPropertiesFiltered(): any {
+    console.log(this.filtered);
+    return this.filtered;
+  }
+  setPropertiesFiltered(properties: any): void {
+    this.filtered = properties;
   }
 }

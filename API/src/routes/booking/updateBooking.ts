@@ -31,7 +31,7 @@ export default (app: Express) => {
       // Mettre à jour l'utilisateur dans la base de données
       await updateBookingById(id, booking);
 
-      return res.status(200).json({ message: "Success", booking });
+      return res.status(200).json({ message: "Succeed", booking });
     } catch (err) {
       return res
         .status(500)
