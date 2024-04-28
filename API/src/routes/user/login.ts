@@ -8,7 +8,6 @@ dotenv.config();
 export default (app: Express) => {
   app.post("/login", loginMiddleware, async (req: Request, res: Response) => {
     const secretKey = process.env.SECRET_KEY!;
-
     const { email, password } = req.body;
     try {
       const user: IUser | null = await getUserByEmail(email);

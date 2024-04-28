@@ -4,18 +4,18 @@ const AutoIncrement = require("mongoose-sequence")(mongoose);
 export interface IUser extends Document {
   idUser: { type: Number; unique: true };
   email: { type: string; required: true; unique: true };
-  firstName: { type: string; required: true };
-  lastName: { type: string; required: true };
+  firstname: { type: string; required: true };
+  lastname: { type: string; required: true };
   phone: string;
   password: { type: string; required: true; select: false };
-  isAdmin: { type: Boolean, default: false };
+  isAdmin: { type: Boolean; default: false };
 }
 
 // Define the schema
 const UserSchema: Schema = new Schema({
   idUser: { type: Number, required: true, unique: true },
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true },
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   phone: { type: String },
   password: { type: String, required: true },

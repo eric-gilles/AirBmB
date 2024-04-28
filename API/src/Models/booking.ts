@@ -40,3 +40,17 @@ export const deleteBookingById = async (idBooking: number) =>
   Booking.findByIdAndDelete({ idBooking });
 export const updateBookingById = async (idBooking: number, booking: IBooking) =>
   Booking.findOneAndUpdate({ idBooking }, booking);
+
+
+export const getPropertyAvailability = async (
+  idProperty: number,
+  startDate: Date,
+  endDate: Date
+) => {
+  const bookings = await Booking.find({
+    idProperty,
+    startDate: { $gte: startDate },
+    endDate: { $lte: endDate },
+  });
+  return bookings.length == 0;
+};

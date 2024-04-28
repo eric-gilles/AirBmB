@@ -7,12 +7,12 @@ export default (app: Express) => {
     "/register",
     registerMiddleware,
     async (req: Request, res: Response) => {
-      const { email, firstName, lastName, password, phone } = req.body;
+      const { email, firstname, lastname, password, phone } = req.body;
       const user = new User({
         idUser: 1,
         email,
-        firstName,
-        lastName,
+        firstname,
+        lastname,
         password,
         phone,
       });

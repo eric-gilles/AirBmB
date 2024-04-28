@@ -1,8 +1,9 @@
 import { updateBookingById, getBookingById } from "../../Models/booking";
 import { Express, Request, Response } from "express";
+import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.put("/booking/", async (req: Request, res: Response) => {
+  app.put("/booking/",authMiddleware, async (req: Request, res: Response) => {
     const { id } = req.body;
 
     try {

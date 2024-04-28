@@ -1,12 +1,12 @@
-import { getUserByEmail } from "./../../Models/user";
+import { getUserByEmail } from "../../Models/user";
 import { Express, Request, Response } from "express";
 import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.get("/user",authMiddleware, async (req: Request, res: Response) => {
-    const { email } = req.body;
+  app.get("/user", authMiddleware, async (req: Request, res: Response) => {
+    const { loggedUserEmail } = req.body;
     try {
-      const user = await getUserByEmail(email);
+      const user = await getUserByEmail(loggedUserEmail);
       if (!user) {
         return res
           .status(404)

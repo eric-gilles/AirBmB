@@ -14,10 +14,10 @@ export default (app: Express) => {
           .json({ message: "Failed", error: "User not found" });
       }
       if (req.body.firstName) {
-        user.firstName = req.body.firstName;
+        user.firstname = req.body.firstname;
       }
       if (req.body.lastName) {
-        user.lastName = req.body.lastName;
+        user.lastname = req.body.lastname;
       }
       if (req.body.phone) {
         user.phone = req.body.phone;

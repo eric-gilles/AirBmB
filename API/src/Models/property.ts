@@ -13,6 +13,7 @@ export interface IProperty extends Document {
   distance: number;
   price: number;
   review?: string;
+  img?: string;
 }
 
 const PropertySchema = new Schema({
@@ -26,6 +27,7 @@ const PropertySchema = new Schema({
   distance: { type: Number, required: true },
   price: { type: Number, required: true },
   review: { type: String },
+  img: { type: String },
 });
 
 PropertySchema.plugin(AutoIncrement, { inc_field: "idProperty" });
@@ -40,7 +42,8 @@ export const createProperty = async (property: IProperty) =>
   Property.create(property).then((property) => property.save());
 export const deletePropertyById = async (idProperty: number) =>
   Property.findOneAndDelete({ idProperty });
-export const updatePropertyById = async (
-  idProperty: number,
-  property: IProperty,
-) => Property.findOneAndUpdate({ idProperty }, property);
+  export const updatePropertyById = async (
+    idProperty: number,
+    updates: Partial<IProperty>
+  ) => Property.findOneAndUpdate({ idProperty }, updates, { new: true });
+  

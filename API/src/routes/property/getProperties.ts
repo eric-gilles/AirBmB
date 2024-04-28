@@ -3,7 +3,7 @@ import { getProperties } from "../../Models/property";
 import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.get("/properties",authMiddleware , async (req: Request, res: Response) => {
+  app.get("/properties", async (req: Request, res: Response) => {
     try {
       const properties: any = await getProperties();
       if (!properties)

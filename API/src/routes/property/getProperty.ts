@@ -3,7 +3,7 @@ import { getPropertyById } from "../../Models/property";
 import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.get("/property/:id",authMiddleware, async (req: Request, res: Response) => {
+  app.get("/property/:id", async (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
     try {
       const property: any = await getPropertyById(id);

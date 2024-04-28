@@ -27,4 +27,11 @@ export class PropertyService {
       this.httpOptions
     );
   }
+  getPropertyAvailable(criteria: any): any {
+    return this.http.post<any>(
+      `${this.API_URL}/properties/available`,
+      criteria,
+      this.httpOptions
+    );
+  }
 }

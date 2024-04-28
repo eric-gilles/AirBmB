@@ -4,6 +4,12 @@ import {
   createPropertyMiddleware,
   authMiddleware,
 } from "../../helpers/middleware";
+import path from "path";
+import { updatePropertyById } from "../../Models/property";
+import fs from "fs";
+import dotenv from "dotenv";
+import { number } from "joi";
+dotenv.config();
 
 export default (app: Express) => {
   app.post(
@@ -31,50 +37,26 @@ export default (app: Express) => {
         numSleeps,
         numBedrooms,
         distance,
+        img: "",
       };
-      if (!price)
-        return res
-          .status(400)
-          .json({ message: "Failed", error: "Price is required" });
-      if (!mailOwner)
-        return res
-          .status(400)
-          .json({ message: "Failed", error: "Owner's mail is required" });
-      if (!city)
-        return res
-          .status(400)
-          .json({ message: "Failed", error: "City is required" });
-      if (!street)
-        return res
-          .status(400)
-          .json({ message: "Failed", error: "Street is required" });
-      if (!zipCode)
-        return res
-          .status(400)
-          .json({ message: "Failed", error: "ZipCode is required" });
-      if (!numSleeps)
-        return res.status(400).json({
-          message: "Failed",
-          error: "The number of people who can sleep is required",
-        });
-      if (!numBedrooms)
-        return res.status(400).json({
-          message: "Failed",
-          error: "The number of bedrooms is required",
-        });
-      if (!distance)
-        return res
-          .status(400)
-          .json({ message: "Failed", error: "Distance is required" });
+
       try {
-        const property: IProperty = await createProperty(property_json);
-        return res.status(201).json({ message: "Succeed", property });
+        var property: any = await createProperty(property_json);
+        property.img = `http://localhost:${process.env.API_PORT}/img/${property.idProperty}`;
+        const property_modified = await updatePropertyById(
+          property.idProperty,
+          { img: property.img }
+        );
+
+        return res
+          .status(201)
+          .json({ message: "Succeed", property: property_modified });
       } catch (err) {
         console.log(err);
         return res
           .status(500)
           .json({ message: "Failed", error: "An error occured" });
       }
-    },
+    }
   );
 };

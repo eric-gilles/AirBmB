@@ -5,14 +5,14 @@ import bodyParser from "body-parser";
 import load_user_routes from "./helpers/load_user_routes";
 import load_property_routes from "./helpers/load_property_routes";
 import load_booking_routes from "./helpers/load_booking_routes";
-// import cors from 'cors';
+import cors from "cors";
 
 dotenv.config();
 
 const port = process.env.API_PORT;
 
 const app = express();
-
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 

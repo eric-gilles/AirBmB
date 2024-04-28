@@ -1,9 +1,9 @@
-import { parse } from "path";
+import { authMiddleware } from "../../helpers/middleware";
 import { getBookingById } from "../../Models/booking";
 import { Express, Request, Response } from "express";
 
 export default (app: Express) => {
-  app.get("/booking/:id", async (req: Request, res: Response) => {
+  app.get("/booking/:id",authMiddleware, async (req: Request, res: Response) => {
     const { id } = req.params;
     try {
       const booking = await getBookingById(parseInt(id));

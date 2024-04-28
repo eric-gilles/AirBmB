@@ -5,34 +5,34 @@
       <div class="card">
         <div class="card-header">Rechercher des Locations</div>
         <div class="card-body">
-          <form>
+          <form #f="ngForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="start-date">Date de début de location:</label>
-              <input type="date" class="form-control" id="start-date" name="start-date" >
+              <input type="date" class="form-control" id="start-date" name="start-date" [(ngModel)]="criteria.startDate">
             </div>
             <div class="form-group">
               <label for="end-date">Date de fin de location:</label>
-              <input type="date" class="form-control" id="end-date" name="end-date" >
+              <input type="date" class="form-control" id="end-date" name="end-date" [(ngModel)]="criteria.endDate" >
             </div>
             <div class="form-group">
               <label for="location">Ville:</label>
-              <input type="text" class="form-control" id="location" name="location" >
+              <input type="text" class="form-control" id="location" name="location" [(ngModel)]="criteria.city">
             </div>
             <div class="form-group">
               <label for="max-price">Prix maximum:</label>
-              <input type="number" class="form-control" id="max-price" name="max-price" >
+              <input type="number" class="form-control" id="max-price" name="max-price" [(ngModel)]="criteria.maxPrice">
             </div>
             <div class="form-group">
               <label for="min-bedrooms">Nombre de chambres minimum:</label>
-              <input type="number" class="form-control" id="min-bedrooms" name="min-bedrooms" >
+              <input type="number" class="form-control" id="min-bedrooms" name="min-bedrooms" [(ngModel)]="criteria.minBedrooms">
             </div>
             <div class="form-group">
               <label for="min-beds">Nombre de couchages minimum:</label>
-              <input type="number" class="form-control" id="min-beds" name="min-beds" >
+              <input type="number" class="form-control" id="min-beds" name="min-beds" [(ngModel)]="criteria.minBeds">
             </div>
             <div class="form-group">
               <label for="max-distance">Distance maximum au centre-ville (mètres):</label>
-              <input type="number" class="form-control" id="max-distance" name="max-distance" >
+              <input type="number" class="form-control" id="max-distance" name="max-distance" [(ngModel)]="criteria.maxDistance">
             </div>
             <button type="submit" class="btn btn-primary">Rechercher</button>
           </form>

@@ -1,7 +1,7 @@
 import register from "../routes/user/register";
 import login from "../routes/user/login";
 import getUsers from "../routes/user/getUsers";
-import getUserByEmail from "../routes/user/getUserByEmail";
+import getUserLogged from "../routes/user/getUserLogged";
 import updateUserByEmail from "../routes/user/updateUserByEmail";
 import updateUserById from "../routes/user/updateUserById";
 import getUserById from "../routes/user/getUserById";
@@ -17,7 +17,7 @@ export default (app: Express) => {
   updateUserById(app);
 
   getUsers(app);
-  getUserByEmail(app);
+  getUserLogged(app);
   getUserById(app);
   deleteAllUsers(app);
   deleteById(app);
