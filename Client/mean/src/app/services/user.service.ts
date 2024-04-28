@@ -43,6 +43,7 @@ export class UserService {
 
   setToken(token: string): void {
     this.cookieService.set('token', token);
+    console.log(this.cookieService.get('token'));
   }
 
   static getToken(): string {

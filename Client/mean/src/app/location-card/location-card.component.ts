@@ -6,8 +6,8 @@ import { IProperty } from '../IProperty';
   standalone: true,
   imports: [],
   templateUrl: './location-card.component.html',
-  styleUrl: './location-card.component.css'
+  styleUrl: './location-card.component.css',
 })
 export class LocationCardComponent {
-  @Input() property!: IProperty;
+  @Input() property!: any;
 }

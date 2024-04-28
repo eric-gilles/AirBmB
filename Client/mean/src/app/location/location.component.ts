@@ -1,7 +1,9 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, Inject, Input, PLATFORM_ID } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
-import { IProperty } from '../IProperty';
+import { PropertyService } from '../services/property.service';
+import * as L from 'leaflet'; // Import Leaflet globally
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-location',
@@ -11,19 +13,17 @@ import { IProperty } from '../IProperty';
   styleUrl: './location.component.css',
 })
 export class LocationComponent {
-  constructor() {}
+  propertyId: string = '';
+  property: any = {};
+  constructor(
+    private route: ActivatedRoute,
+    private propertyService: PropertyService
+  ) {}
 
-  property: IProperty = {
-    idProperty: 1,
-    mailOwner: 'navelmorgan34@gmail.com',
-    city: 'Montpellier',
-    street: '1424 Rte de Mende',
-    zipCode: '34090',
-    numSleeps: 3,
-    numBedrooms: 3,
-    distance: 7.5,
-    price: 45,
-    review: 4.5,
-    photo: '../assets/image.jpg',
-  };
+  ngOnInit() {
+    this.propertyId = this.route.snapshot.paramMap.get('id')!;
+    this.propertyService.getProperty(this.propertyId).subscribe((data: any) => {
+      this.property = data.property;
+    });
+  }
 }

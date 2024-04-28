@@ -1,10 +1,9 @@
 import { Component, NgModule, inject } from '@angular/core';
-import { UserService } from '../user-service/user-service.service';
+import { UserService } from '../services/user.service';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -24,6 +23,8 @@ export class LoginComponent {
     this.userService.login(this.user).subscribe(
       (response) => {
         console.log('Logged in successfully!');
+        console.log(response);
+        this.userService.setToken(response.token);
       },
       (error) => {
         console.error('Login failed:', error);

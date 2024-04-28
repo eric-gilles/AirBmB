@@ -2,26 +2,26 @@
 
 <div class="main container-fluid">
 	<div class="signup">
-        <form>
+        <form #f="ngForm" (ngSubmit)="onSubmit()">
             <label class="chk" aria-hidden="true"><b>Sign up</b></label>
             <div class="input-container">
-				<input type="text" name="firstname" placeholder="" required="">
+				<input type="text" name="firstname" placeholder="" required="" [(ngModel)]="user.firstname">
 				<label id="firstnameLabel">Firstname</label>
 			</div>
             <div class="input-container">
-				<input type="text" name="lastname" placeholder="" required="">
+				<input type="text" name="lastname" placeholder="" required="" [(ngModel)]="user.lastname">
 				<label id="lastnameLabel">Lastname</label>
 			</div>
             <div class="input-container">
-				<input type="email" name="email" placeholder="" required="">
+				<input type="email" name="email" placeholder="" required="" [(ngModel)]="user.email">
 				<label id="emailLabel">Email</label>
 			</div>
             <div class="input-container">
-				<input type="password" name="pswd" required placeholder="">
+				<input type="password" name="pswd" required placeholder="" [(ngModel)]="user.password">
 				<label id="passwordLabel">Password</label>
 			</div>
             <div class="input-container">
-				<input type="phone" name="phone" placeholder="" required="">
+				<input type="phone" name="phone" placeholder="" required="" [(ngModel)]="user.phone">
 				<label id="phoneLabel">Phone number</label>
 			</div>
             <button>Sign up</button>

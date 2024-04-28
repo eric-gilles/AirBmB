@@ -8,44 +8,44 @@ import { LocationComponent } from './location/location.component';
 import { ShoppingCartComponent } from '../shopping-cart/shopping-cart.component';
 
 export const routes: Routes = [
-    {
-        path: '',
-        redirectTo: 'home',
-        pathMatch: 'full'
-    },
-    {
-        path: 'location',
-        component: LocationComponent,
-        title: 'Location'
-    },
-    {
-        path:'locations', 
-        component: LocationContainerComponent,
-        title: 'Location'
-    },
-    {
-        path: 'home',
-        component : HomeComponent,
-        title: 'Home'
-    },
-    {
-        path: 'login',
-        component : LoginComponent,
-        title: 'Login'
-    },
-    {
-        path: 'signup',
-        component : SignupComponent,
-        title: 'Signup'
-    },
-    {
-        path: 'error',
-        component : ErrorComponent,
-        title: 'Error'
-    },
-    {
-        path: 'basket',
-        component : ShoppingCartComponent,
-        title: 'Shopping Cart'
-    }
+  {
+    path: '',
+    redirectTo: 'home',
+    pathMatch: 'full',
+  },
+  {
+    path: 'location/:id',
+    component: LocationComponent,
+    title: 'Location',
+  },
+  {
+    path: 'locations',
+    component: LocationContainerComponent,
+    title: 'Location',
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+    title: 'Home',
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    title: 'Login',
+  },
+  {
+    path: 'signup',
+    component: SignupComponent,
+    title: 'Signup',
+  },
+  {
+    path: 'error',
+    component: ErrorComponent,
+    title: 'Error',
+  },
+  {
+    path: 'basket',
+    component: ShoppingCartComponent,
+    title: 'Shopping Cart',
+  },
 ];

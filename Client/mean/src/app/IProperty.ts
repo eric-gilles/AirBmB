@@ -9,5 +9,5 @@ export interface IProperty {
   distance: number;
   price: number;
   review: number;
-  photo: string;
+  img: string;
 }

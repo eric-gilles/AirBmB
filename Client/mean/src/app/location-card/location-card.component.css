@@ -1,6 +1,6 @@
 .listing {
   background-color: #fff;
-  width: 400px;
+  width: 500px;
   height: auto;
   margin: 20px;
   padding: 20px;
@@ -10,7 +10,6 @@
 }
 
 .listing-photo {
-  width: 100%;
   border-radius: 10px 10px 0 0;
 }
 
