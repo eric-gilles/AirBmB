@@ -1,7 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose";
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 export interface IBooking extends Document {
-  _id: Number;
   idBooking: string;
   property: Number;
   renterEmail: string;
@@ -28,12 +27,8 @@ export default Booking;
 export const getBookings = async () => Booking.find();
 export const getBookingById = async (idBooking: number) =>
   Booking.findOne({ idBooking });
-export const getBookingByPropertyId = async (idProperty: number) => {
-  console.log(idProperty);
-  const booking = await Booking.find({ idProperty });
-  console.log(booking);
-  return booking;
-};
+export const getBookingByPropertyId = async (idProperty: number) =>
+  Booking.find({ idProperty });
 export const createBooking = async (booking: IBooking) =>
   Booking.create(booking).then((booking) => booking.save());
 export const deleteBookingById = async (idBooking: number) =>

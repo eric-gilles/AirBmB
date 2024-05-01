@@ -1,7 +1,7 @@
 import mongoose, { Schema, Document } from "mongoose";
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 
-export interface IUser extends Document {
+export interface IUser {
   idUser: { type: Number; unique: true };
   email: { type: string; required: true; unique: true };
   firstname: { type: string; required: true };

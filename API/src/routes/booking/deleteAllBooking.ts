@@ -1,17 +1,14 @@
-import { IBooking, getBookings } from "../../Models/booking";
+import Booking, { IBooking, getBookings } from "../../Models/booking";
 import { Express, Request, Response } from "express";
 import { authMiddleware } from "../../helpers/middleware";
 
 export default (app: Express) => {
-  app.delete("/bookings",authMiddleware, async (req: Request, res: Response) => {
-    const booking = await getBookings().catch((err) => {
-      res.status(500).json({ message: "Failed", error: err });
-    });
-    if (booking) {
-      booking.forEach(async (booking: IBooking) => {
-        await booking.deleteOne();
-      });
+  app.delete(
+    "/bookings",
+    authMiddleware,
+    async (req: Request, res: Response) => {
+      const bookings = await Booking.deleteMany({});
+      res.status(200).json({ message: "Succeed", deleted: bookings });
     }
-    res.status(200).json({ message: "Succeed", booking });
-  });
+  );
 };

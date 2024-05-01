@@ -1,50 +1,23 @@
 <div class="container">
     <div class="be-comment-block">
-        <h1 class="comments-title">Commentaires (3)</h1>
+        <h1 class="comments-title">Commentaires ({{comments.length}})</h1>
+        <ng-container *ngFor="let comment of comments">
         <div class="be-comment">
             <div class="be-img-comment">    
                 <img src="https://img.icons8.com/color/48/name--v2.png" alt="" class="be-ava-comment">
             </div>
             <div class="be-comment-content">
                 <span class="be-comment-name">
-                    <p>John Doe</p>
-                    <p class="rating">Note : 4/5 <span class="stars">&#9733;&#9733;&#9733;&#9733;</span></p>
-                    
+                    <p>{{comment.user.firstname}} {{comment.user.lastname}}</p>
+                    <p class="rating">Note : {{comment.note}}/5 
+                        <span class="stars"><ng-container *ngFor="let i of getStarsArray(comment.note)">&#9733;</ng-container></span>
+                    </p>   
                 </span>
-                <span class="be-comment-time">le 27 mai 2015 à 13:14</span>
-                <p class="be-comment-text">Excellent logement, je recommande vivement !</p>
+                <span class="be-comment-time">le {{ comment.createdAt | date:'d MMMM y \'à\' HH:mm' }}</span>
+                <p class="be-comment-text">{{comment.comment}}</p>
             </div>
         </div>
-        <div class="be-comment">
-            <div class="be-img-comment">    
-                <img src="https://img.icons8.com/color/48/circled-user-male-skin-type-7--v1.png" alt="" class="be-ava-comment">
-            </div>
-            <div class="be-comment-content">
-                <span class="be-comment-name">
-                    <p>Mathieu Dupont</p>
-                    <p class="rating">Note : 4/5 <span class="stars">&#9733;&#9733;&#9733;&#9733;</span></p>
-                    
-                </span>
-                <span class="be-comment-time">le 27 septembre 2023 à 18:57</span>
-                <p class="be-comment-text">Superbe habitation, je reviendrai passer mes prochaines vacances ici ! </p>
-            </div>
-        </div>
-        <div class="be-comment">
-            <div class="be-img-comment">    
-                <img src="https://img.icons8.com/color/48/circled-user-female-skin-type-7--v1.png" alt="" class="be-ava-comment">
-            </div>
-            <div class="be-comment-content">
-                <span class="be-comment-name">
-                    <p>Cecilia Nara</p>
-                    <p class="rating">Note : 2/5 <span class="stars">&#9733;&#9733;</span></p>
-                    
-                </span>
-                <span class="be-comment-time">le 2 mai 2024 à 8:24</span>
-                <p class="be-comment-text">
-                    Logement agréable, mais un peu cher pour l'emplacement de la maison. Je recommande tout de même même si le prix est un peu élevé.
-                </p>
-            </div>
-        </div>
+        </ng-container>
         <form class="form-block">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
@@ -61,11 +34,11 @@
                     <div class="form-group">
                         <select class="form-input" required="">
                             <option value="">Sélectionner une note</option>
-                            <option value="5">5/5</option>
-                            <option value="4">4/5</option>
-                            <option value="3">3/5</option>
-                            <option value="2">2/5</option>
-                            <option value="1">1/5</option>
+                            <option value="5">5 &#9733;</option>
+                            <option value="4">4 &#9733;</option>
+                            <option value="3">3 &#9733;</option>
+                            <option value="2">2 &#9733;</option>
+                            <option value="1">1 &#9733;</option>
                         </select>
                     </div>
                 </div>

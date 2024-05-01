@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 const AutoIncrement = require("mongoose-sequence")(mongoose);
 
 // Define the schema
-export interface IProperty extends Document {
+export interface IProperty {
   idProperty: { type: Number; required: true; unique: true };
   mailOwner: string;
   city: string;

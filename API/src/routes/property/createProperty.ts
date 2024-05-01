@@ -1,14 +1,11 @@
 import { Express, Request, Response } from "express";
-import { IProperty, createProperty } from "../../Models/property";
+import { createProperty } from "../../Models/property";
 import {
   createPropertyMiddleware,
   authMiddleware,
 } from "../../helpers/middleware";
-import path from "path";
 import { updatePropertyById } from "../../Models/property";
-import fs from "fs";
 import dotenv from "dotenv";
-import { number } from "joi";
 dotenv.config();
 
 export default (app: Express) => {
