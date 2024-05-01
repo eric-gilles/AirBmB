@@ -1,0 +1,81 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vh;
+}
+
+.card {
+    width: 60%;
+    border: 1px solid #e4e4e4;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    padding: 20px;
+}
+
+.title {
+    padding: 10px 0;
+}
+
+.title h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.img-fluid {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.row {
+    margin: 10px 0;
+}
+
+.row .col {
+    padding: 0 10px;
+}
+
+.col:nth-child(3) {
+    font-weight: bold;
+}
+
+.col:nth-child(4) {
+    font-weight: bold;
+}
+
+.back-to-shop {
+    margin-bottom: 20px;
+}
+
+.back-to-shop a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-to-shop a:hover {
+    text-decoration: underline;
+}
+
+.row .main.align-items-center {
+    display: flex;
+    width: 100%;
+}
+
+.row .main.align-items-center .col {
+    flex: 1;
+    padding: 0 10px;
+}
+
+app-footer {
+    margin-top: auto;
+}
