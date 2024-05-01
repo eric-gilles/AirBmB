@@ -41,11 +41,9 @@
 <div class="map-title" id="map">
   <h3>Où se situe le logement ?</h3>
   <h2>Adresse: {{ property.street }}, {{ property.zipCode }} {{ property.city }}</h2>
-  <h2>Vous trouverez ci-dessous la carte de localisation du logement. <a href="location#map" style="color: black;"><i class="fas fa-arrow-down"></i> </a> </h2>
+  <h2>Vous trouverez ci-dessous où se trouve le logement. <a href="location/{{property.idProperty}}#map" style="color: black;"><i class="fas fa-arrow-down"></i> </a> </h2>
 </div>
-<div class="map-responsive">
-  <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d5775.347315428806!2d3.8655808!3d43.6341508!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12b6af26d6c6db7b%3A0x6f657489e9c61009!2s1424%20Rte%20de%20Mende%2C%2034090%20Montpellier!5e0!3m2!1sfr!2sfr!4v1714035152648!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</div>
+<div id="map-container" class="map-responsive"></div>
 <br/>
 <app-footer></app-footer>
 <div class="overlay" *ngIf="showOverlay">
