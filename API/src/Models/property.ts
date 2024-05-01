@@ -30,6 +30,8 @@ const PropertySchema = new Schema({
   price: { type: Number, required: true },
   review: { type: String },
   img: { type: String },
+  latitude: { type: Number, required: true },
+  longitude: { type: Number, required: true },
 });
 
 PropertySchema.plugin(AutoIncrement, { inc_field: "idProperty" });

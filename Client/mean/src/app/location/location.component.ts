@@ -138,18 +138,19 @@ export class LocationComponent {
 }
 
 function initMap(property: any) {
-  let center: [number, number] = [property.latitude, property.longitude];
-  let center1: [number, number] = [3.8783815, 43.6157942];
+  let center: [number, number] = [property.longitude, property.latitude];
+
+  console.log(center);
   (mapboxgl as typeof mapboxgl).accessToken =
     'pk.eyJ1IjoiZXJpYy1naWxsZXMiLCJhIjoiY2x2bnY2ejV3MGlxMjJrcW9vbHE1YzBiciJ9.K8tUIRMvkyViACCawboUlA';
   const map = new mapboxgl.Map({
     container: 'map-container', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
-    center: center1,
-    zoom: 15, // starting zoom
+    center: center,
+    zoom: 13, // starting zoom
   });
   // Add a marker at the center of the map
-  new mapboxgl.Marker().setLngLat(center1).addTo(map);
+  new mapboxgl.Marker().setLngLat(center).addTo(map);
   // Add zoom and rotation controls to the map.
   map.addControl(new mapboxgl.NavigationControl());
   map.on('load', () => {

@@ -29,7 +29,7 @@ const adresses = [
   },
   {
     street: "85 rue Sébastopol",
-    city: "Sant-Etienne",
+    city: "Saint-Etienne",
     zipCode: "42000",
     latitude: 45.4397,
     longitude: 4.3872,

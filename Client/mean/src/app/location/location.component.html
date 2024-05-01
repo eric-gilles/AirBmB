@@ -16,11 +16,11 @@
         <div *ngIf="!filter.startDate || !filter.endDate">
           <div class="form-group">
             <label for="start-date">Début :</label>
-            <input type="date"  placeholder="Début" class="form-control" id="start-date" name="start-date" [(ngModel)]="filter_model.startDate">
+            <input type="date"  placeholder="Début" class="form-control" id="start-date" name="start-date" [(ngModel)]="filter_model.startDate" required>
           </div>
           <div class="form-group">
             <label for="end-date">Fin :</label>
-            <input type="date" placeholder="Fin" class="form-control" id="end-date" name="end-date" [(ngModel)]="filter_model.endDate" >
+            <input type="date" placeholder="Fin" class="form-control" id="end-date" name="end-date" [(ngModel)]="filter_model.endDate" required>
           </div>
           <div class="form-group">
             <label for="numSleeps">Nombre de personnes :</label>
@@ -41,9 +41,10 @@
 <div class="map-title" id="map">
   <h3>Où se situe le logement ?</h3>
   <h2>Adresse: {{ property.street }}, {{ property.zipCode }} {{ property.city }}</h2>
-  <h2>Vous trouverez ci-dessous où se trouve le logement. <a href="location/{{property.idProperty}}#map" style="color: black;"><i class="fas fa-arrow-down"></i> </a> </h2>
+  <h2>Vous trouverez ci-dessous la carte de localisation du logement. <a href="location#map" style="color: black;"><i class="fas fa-arrow-down"></i> </a> </h2>
 </div>
-<div id="map-container" class="map-responsive"></div>
+<div id="map-container" class="map-responsive">
+</div>
 <br/>
 <app-footer></app-footer>
 
