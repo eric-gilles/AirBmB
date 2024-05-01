@@ -48,6 +48,8 @@
 </div>
 <br/>
 <app-footer></app-footer>
+
+
 <div class="overlay" *ngIf="showOverlay">
   <div class="payment-overlay">
     <div class="payment-modal">
@@ -59,20 +61,20 @@
           <span>Total: {{ calculateTotalPrice() }} €</span>
         </div>      
       </div>
-      <form #f="ngForm" (ngSubmit)="onSubmit()">
+      <form #f="ngForm" (ngSubmit)="onSubmitReservation()">
         <div class="payment-form">
           <h2>Paiement Informations</h2>
           <div class="form-group">
             <label for="card-number">Card number:</label>
-            <input type="text" class="form-control" id="card-number" name="card-number" [(ngModel)]="payment.cardNumber">
+            <input type="text" class="form-control" id="card-number" name="card-number" [(ngModel)]="payment.cardNumber" required>
           </div>
           <div class="form-group">
             <label for="expiration-date">Expiration date:</label>
-            <input type="text" class="form-control" id="expiration-date" name="expiration-date" [(ngModel)]="payment.expirationDate">
+            <input type="text" class="form-control" id="expiration-date" name="expiration-date" [(ngModel)]="payment.expirationDate" required>
           </div>
           <div class="form-group">
             <label for="cvv">CVV:</label>
-            <input type="text" class="form-control" id="cvv" name="cvv" [(ngModel)]="payment.cvv">
+            <input type="text" class="form-control" id="cvv" name="cvv" [(ngModel)]="payment.cvv" required>
           </div>
           <div class="button-group">
             <button class="cancel-button" (click)="closeOverlay()">Cancel</button>

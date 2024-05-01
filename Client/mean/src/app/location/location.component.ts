@@ -80,33 +80,20 @@ export class LocationComponent {
     if (this.filter.endDate && this.filter.startDate) {
       this.filter_model = this.filter;
     }
-    if (
-      this.filter_model.startDate === '' ||
-      this.filter_model.endDate === ''
-    ) {
-      alert('Please select the dates');
-      return;
-    }
-    if (this.filter_model.minBeds === 0) {
-      alert('Please select the number of person sleeping');
-      return;
-    }
     this.propertyService
       .getPropertyAvailable(Number(this.propertyId), this.filter_model)
       .subscribe((response) => {
         this.propertyAvailable = response.isAvailable;
         if (response.isAvailable) {
-          alert('Property is available');
           this.showOverlay = true;
         }
       });
   }
 
   calculateNumberOfNights() {
-    console.log(this.filter);
     // Convertir les chaînes de caractères en objets Date
-    const startDate = new Date(this.filter.startDate);
-    const endDate = new Date(this.filter.endDate);
+    const startDate = new Date(this.filter_model.startDate);
+    const endDate = new Date(this.filter_model.endDate);
 
     // Calculer la différence en millisecondes
     const differenceMillis = endDate.getTime() - startDate.getTime();
@@ -123,5 +110,22 @@ export class LocationComponent {
 
     // Calculer le prix total
     return numberOfNights * this.property.price;
+  }
+  closeOverlay() {
+    this.showOverlay = false;
+  }
+  onSubmitReservation() {
+    this.userService.getUser().subscribe((user) => {
+      this.propertyService
+        .makeReservation(Number(this.propertyId), this.filter_model, user)
+        .subscribe((response) => {
+          if (response.message === 'Succeed') {
+            alert('Booking successful');
+            this.showOverlay = false;
+          } else {
+            alert('Booking failed');
+          }
+        });
+    });
   }
 }

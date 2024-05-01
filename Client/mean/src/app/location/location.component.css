@@ -135,7 +135,6 @@
 }
 
 .form-group button {
-  width: 30px; /* Ajustez la largeur selon vos besoins */
   padding: 8px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -159,7 +158,7 @@
 
 .form-group div {
   display: flex;
-  align-items: center;
+  text-align: left;
 }
 .error {
   background-color: #ffe8e8; /* Couleur de fond */
@@ -169,8 +168,6 @@
   border-radius: 4px; /* Coins arrondis */
   margin-bottom: 20px; /* Marge en bas */
 }
-
-
 .payment-overlay {
   position: fixed;
   top: 0;
@@ -189,9 +186,10 @@
   border-radius: 10px; /* Coins arrondis */
   padding: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ombre portée */
-  max-width: 500px; /* Largeur maximale de la modal */
-  width: 80%; /* Largeur de la modal */
+  max-width: 600px; /* Largeur maximale de la modal */
+  width: 90%; /* Largeur de la modal */
 }
+
 .payment-modal h1 {
   font-size: 32px; /* Taille de la police */
   font-weight: bold; /* Épaisseur de la police */
@@ -201,7 +199,6 @@
 }
 
 .payment-details h2 {
-  
   font-size: 28px;
   margin-bottom: 20px;
   color: #333;
@@ -221,12 +218,10 @@
   font-weight: bold; /* Épaisseur de la police en gras */
 }
 
-
 .price-item span:first-child {
   color: #ff585d; /* Couleur du prix */
   font-size: 18px; /* Taille de la police */
 }
-
 
 .payment-form h2 {
   font-size: 28px;
@@ -257,7 +252,6 @@
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
 }
 
-
 .button-group {
   display: flex;
   justify-content: space-between;
@@ -282,3 +276,18 @@
   background-color: #ff3333; /* Rouge */
   color: #fff; /* Couleur de texte */
 }
+
+
+#cvv {
+  width: 50px;
+  text-align: left;
+}
+#expiration-date {
+  width: 100px;
+  text-align: left;
+}
+#card-number {
+  width: 100%;
+  text-align: left;
+}
+
