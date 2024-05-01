@@ -5,7 +5,7 @@ import getProperty from "../routes/property/getProperty";
 import getProperties from "../routes/property/getProperties";
 import getImg from "../routes/property/getImg";
 import getAvailableProperties from "../routes/property/getAvailableProperties";
-
+import getAvailableProperty from "../routes/property/getAvailableProperty";
 
 import { Express } from "express";
 export default (app: Express) => {
@@ -16,4 +16,5 @@ export default (app: Express) => {
   getProperties(app);
   getImg(app);
   getAvailableProperties(app);
+  getAvailableProperty(app);
 };
