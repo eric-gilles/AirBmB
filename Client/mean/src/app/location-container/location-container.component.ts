@@ -5,6 +5,8 @@ import { HeaderComponent } from '../header/header.component';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from '../footer/footer.component';
 import { PropertyService } from '../services/property.service';
+import { ActivatedRoute } from '@angular/router';
+import { BookingFilter } from '../BookingFilter';
 
 @Component({
   selector: 'location-container',
@@ -21,21 +23,27 @@ import { PropertyService } from '../services/property.service';
 })
 export class LocationContainerComponent {
   properties: any = []; // Array to store fetched properties
+  criteria: BookingFilter | undefined;
+  constructor(
+    private propertyService: PropertyService,
+    private route: ActivatedRoute
+  ) {}
 
-  constructor(private propertyService: PropertyService) {}
-
-  ngOnInit() {
-    const filtered = this.propertyService.getPropertiesFiltered();
-    if (filtered.length > 0) {
-      this.properties = filtered;
-      return;
-    }
-    this.propertyService.getProperties().subscribe((response) => {
-      if (response.message === 'Succeed') {
-        this.properties = response.properties;
+  ngOnInit(): void {
+    this.route.queryParams.subscribe((params) => {
+      if (!params['filters']) {
+        this.propertyService.getProperties().subscribe((data) => {
+          this.properties = data.properties;
+        });
         return;
       }
+      this.criteria = JSON.parse(params['filters']);
+
+      this.propertyService
+        .getPropertiesAvailable(this.criteria)
+        .subscribe((data) => {
+          this.properties = data.properties;
+        });
     });
-    
   }
 }

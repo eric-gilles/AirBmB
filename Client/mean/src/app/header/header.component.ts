@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { PropertyService } from '../services/property.service';
 
 @Component({
   selector: 'app-header',
@@ -8,9 +7,4 @@ import { PropertyService } from '../services/property.service';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
 })
-export class HeaderComponent {
-  constructor(private propertyService: PropertyService) {}
-  clearFilteredProperties(): void {
-    this.propertyService.setPropertiesFiltered([]);
-  }
-}
+export class HeaderComponent {}

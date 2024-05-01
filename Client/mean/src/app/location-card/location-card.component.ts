@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { IProperty } from '../IProperty';
+import { BookingFilter } from '../BookingFilter';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'location-card',
@@ -10,4 +11,12 @@ import { IProperty } from '../IProperty';
 })
 export class LocationCardComponent {
   @Input() property!: any;
+  @Input() filter: BookingFilter | undefined;
+
+  constructor(private rooter: Router) {}
+  navigate() {
+    this.rooter.navigate(['/location', this.property.idProperty], {
+      queryParams: { filters: JSON.stringify(this.filter) },
+    });
+  }
 }

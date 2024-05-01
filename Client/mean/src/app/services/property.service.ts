@@ -1,5 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { BookingFilter } from '../BookingFilter';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,10 @@ export class PropertyService {
       'Access-Control-Allow-Origin': '*',
     }),
   };
-  private filtered: any = [];
+  private filter: BookingFilter = {
+    startDate: '',
+    endDate: '',
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -28,18 +32,34 @@ export class PropertyService {
       this.httpOptions
     );
   }
-  getPropertyAvailable(criteria: any) {
+  getPropertiesAvailable(criteria: any) {
     return this.http.post<any>(
       `${this.API_URL}/properties/available`,
       criteria,
       this.httpOptions
     );
   }
-  getPropertiesFiltered(): any {
-    console.log(this.filtered);
-    return this.filtered;
+
+  getPropertyAvailable(id: number, criteria: any) {
+    console.log(criteria);
+    return this.http.post<any>(
+      `${this.API_URL}/property/${id}/available`,
+      criteria,
+      this.httpOptions
+    );
   }
-  setPropertiesFiltered(properties: any): void {
-    this.filtered = properties;
+  makeReservation(idProperty: number, criteria: BookingFilter, user: any) {
+    const payload = {
+      idProperty,
+      renterEmail: user.email,
+      startDate: criteria.startDate,
+      endDate: criteria.endDate,
+      nbGuests: criteria.minBeds,
+    };
+    return this.http.post<any>(
+      `${this.API_URL}/book`,
+      payload,
+      this.httpOptions
+    );
   }
 }

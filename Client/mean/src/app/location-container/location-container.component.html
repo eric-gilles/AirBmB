@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <ng-container *ngFor="let propertyItem of properties">
-  <location-card [property]="propertyItem"></location-card>
+  <location-card [property]="propertyItem" [filter]="criteria"></location-card>
 </ng-container>
 
 <app-footer></app-footer>

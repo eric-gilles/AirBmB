@@ -74,3 +74,13 @@
   .form-group label + input {
     margin-top: 5px;
   }
+
+  .error {
+    background-color: #ffe8e8; /* Couleur de fond */
+    color: #ff0000; /* Couleur du texte */
+    padding: 10px; /* Espace intérieur */
+    border: 1px solid #ff0000; /* Bordure */
+    border-radius: 4px; /* Coins arrondis */
+    margin-bottom: 20px; /* Marge en bas */
+  }
+  
