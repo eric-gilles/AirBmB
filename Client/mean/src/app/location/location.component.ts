@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common'; // Import isPlatformBrowser
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { PropertyService } from '../services/property.service';
@@ -7,6 +8,7 @@ import { BookingFilter } from '../BookingFilter';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
+import mapboxgl from 'mapbox-gl';
 
 @Component({
   selector: 'app-location',
@@ -48,7 +50,8 @@ export class LocationComponent {
   constructor(
     private route: ActivatedRoute,
     private propertyService: PropertyService,
-    private userService: UserService
+    private userService: UserService,
+    @Inject(PLATFORM_ID) private platformId: Object // Inject PLATFORM_ID
   ) {}
 
   decrementValue() {
@@ -73,6 +76,10 @@ export class LocationComponent {
 
     this.propertyService.getProperty(this.propertyId).subscribe((response) => {
       this.property = response.property;
+      if (isPlatformBrowser(this.platformId)) {
+        // Check if running in the browser
+        initMap(this.property);
+      }
     });
   }
 
@@ -128,4 +135,24 @@ export class LocationComponent {
         });
     });
   }
+}
+
+function initMap(property: any) {
+  let center: [number, number] = [property.latitude, property.longitude];
+  let center1: [number, number] = [3.8783815, 43.6157942];
+  (mapboxgl as typeof mapboxgl).accessToken =
+    'pk.eyJ1IjoiZXJpYy1naWxsZXMiLCJhIjoiY2x2bnY2ejV3MGlxMjJrcW9vbHE1YzBiciJ9.K8tUIRMvkyViACCawboUlA';
+  const map = new mapboxgl.Map({
+    container: 'map-container', // container ID
+    style: 'mapbox://styles/mapbox/streets-v12', // style URL
+    center: center1,
+    zoom: 15, // starting zoom
+  });
+  // Add a marker at the center of the map
+  new mapboxgl.Marker().setLngLat(center1).addTo(map);
+  // Add zoom and rotation controls to the map.
+  map.addControl(new mapboxgl.NavigationControl());
+  map.on('load', () => {
+    map.resize();
+  });
 }

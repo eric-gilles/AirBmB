@@ -14,6 +14,8 @@ export interface IProperty extends Document {
   price: number;
   review?: string;
   img?: string;
+  latitude: number;
+  longitude: number;
 }
 
 const PropertySchema = new Schema({

@@ -10,4 +10,6 @@ export interface IProperty {
   price: number;
   review: number;
   img: string;
+  latitute: number;
+  longitude: number;
 }

@@ -7,41 +7,65 @@ const adresses = [
     city: "Chartres",
     street: "6 place Maurice-Charretier",
     zipCode: "28000",
+    latitude: 48.4439,
+    longitude: 1.4895,
+    review: "4.5",
   },
   {
     city: "Bordeaux",
     street: "24 avenue de l'Amandier",
     zipCode: "33000",
+    latitude: 44.8378,
+    longitude: -0.5795,
+    review: "4.6",
   },
   {
     street: "92 rue Gouin de Beauchesne",
     city: "Saint-michel-sur-orge",
     zipCode: "91240",
+    latitude: 48.6351,
+    longitude: 2.3062,
+    review: "4.7",
   },
   {
     street: "85 rue Sébastopol",
     city: "Sant-Etienne",
     zipCode: "42000",
+    latitude: 45.4397,
+    longitude: 4.3872,
+    review: "4",
   },
   {
     street: "96 Square de la Couronne",
     city: "Ozoir-la-Ferrière",
     zipCode: "77330",
+    latitude: 48.7734,
+    longitude: 2.6608,
+    review: "4.2",
   },
   {
     street: "52 rue de la Hulotais",
     city: "Saint-quentin",
     zipCode: "02100",
+    latitude: 49.8486,
+    longitude: 3.2875,
+    review: "4.3",
   },
   {
     street: "58 Place de la Gare",
     city: "Combs-la-Ville",
     zipCode: "77380",
+    latitude: 48.6597,
+    longitude: 2.5632,
+    review: "3.5",
   },
   {
     street: "50 rue Saint Germain",
     city: "Gap",
     zipCode: "05000",
+    latitude: 44.5613,
+    longitude: 6.0826,
+    review: "4.8",
   },
 ];
 const createUsersAndProperties = async () => {
@@ -81,7 +105,9 @@ const createUsersAndProperties = async () => {
         numBedrooms: Math.floor(Math.random() * 5) + 1,
         distance: Math.floor(Math.random() * 50) + 1,
         price: Math.floor(Math.random() * 990000) + 10000, // Prix entre 10000 et 1000000
-        review: "", // Ajouter d'autres champs de bien aléatoires si nécessaire
+        latitude: adresses[i].latitude,
+        longitude: adresses[i].longitude,
+        review: adresses[i].review, // Ajouter d'autres champs de bien aléatoires si nécessaire
         img: "", // Ajouter d'autres champs de bien aléatoires si nécessaire
       };
 
