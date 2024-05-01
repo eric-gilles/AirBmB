@@ -35,7 +35,7 @@
       <div *ngIf="!propertyAvailable" class="error">
         <p>Le bien n'est malheureusement pas disponible.</p>
       </div>
-      <input type="submit" class="confirm-button" value="Confirmer la location">
+      <input type="submit" class="btn" value="Confirmer la location">
   </div>
 </form>
 <div class="map-title" id="map">
@@ -46,6 +46,8 @@
 <div id="map-container" class="map-responsive">
 </div>
 <br/>
+<app-review-box></app-review-box>
+
 <app-footer></app-footer>
 
 

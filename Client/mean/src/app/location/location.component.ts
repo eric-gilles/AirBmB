@@ -9,13 +9,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import mapboxgl from 'mapbox-gl';
+import { ReviewBoxComponent } from "../review-box/review-box.component";
 
 @Component({
-  selector: 'app-location',
-  standalone: true,
-  imports: [HeaderComponent, FooterComponent, CommonModule, FormsModule],
-  templateUrl: './location.component.html',
-  styleUrl: './location.component.css',
+    selector: 'app-location',
+    standalone: true,
+    templateUrl: './location.component.html',
+    styleUrl: './location.component.css',
+    imports: [HeaderComponent, FooterComponent, CommonModule, FormsModule, ReviewBoxComponent]
 })
 export class LocationComponent {
   propertyId: string = '';
