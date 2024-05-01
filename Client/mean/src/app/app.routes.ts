@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { ErrorComponent } from './error/error.component';
 import { LocationContainerComponent } from './location-container/location-container.component';
 import { LocationComponent } from './location/location.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { HistoryComponent } from './history/history.component';
 
 export const routes: Routes = [
   {
@@ -44,8 +44,8 @@ export const routes: Routes = [
     title: 'Error',
   },
   {
-    path: 'basket',
-    component: ShoppingCartComponent,
-    title: 'Shopping Cart',
+    path: 'history',
+    component: HistoryComponent,
+    title: 'Historique de Visite',
   },
 ];
