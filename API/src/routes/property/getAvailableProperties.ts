@@ -10,6 +10,10 @@ export default (app: Express) => {
     validateDateMiddleware,
     async (req: Request, res: Response) => {
       const { startDate, endDate } = req.body;
+      if (startDate < Date.now())
+        return res
+          .status(500)
+          .json({ message: "Failed", error: "Invalid date" });
       const properties: IProperty[] = await getProperties();
       const availableProperties = properties.filter(async (property: any) => {
         const isAvailable: Boolean = await getPropertyAvailability(

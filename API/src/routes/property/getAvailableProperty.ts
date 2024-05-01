@@ -11,8 +11,10 @@ export default (app: Express) => {
     async (req: Request, res: Response) => {
       const { startDate, endDate } = req.body;
       const idProperty = parseInt(req.params.id);
-      console.log("POST /property/" + idProperty + "/available");
-
+      if (startDate < Date.now())
+        return res
+          .status(500)
+          .json({ message: "Failed", error: "Invalid date" });
       const property: IProperty | null =
         (await getPropertyById(idProperty)) ?? null;
       if (property === null) {

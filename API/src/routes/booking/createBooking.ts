@@ -19,7 +19,10 @@ export default (app: Express) => {
     async (req: Request, res: Response) => {
       const { idProperty, nbGuests, renterEmail, startDate, endDate, review } =
         req.body;
-
+      if (startDate < Date.now())
+        return res
+          .status(500)
+          .json({ message: "Failed", error: "Invalid date" });
       const booking = new Booking({
         idBooking: 1,
         idProperty: parseInt(idProperty),

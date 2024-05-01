@@ -3,12 +3,16 @@ import { isPlatformBrowser } from '@angular/common'; // Import isPlatformBrowser
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { PropertyService } from '../services/property.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookingFilter } from '../BookingFilter';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import mapboxgl from 'mapbox-gl';
+import { response } from 'express';
+import { switchMap } from 'rxjs';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { error } from 'console';
 
 @Component({
   selector: 'app-location',
@@ -48,9 +52,10 @@ export class LocationComponent {
   };
 
   constructor(
-    private route: ActivatedRoute,
+    private router: ActivatedRoute,
     private propertyService: PropertyService,
     private userService: UserService,
+    private route: Router,
     @Inject(PLATFORM_ID) private platformId: Object // Inject PLATFORM_ID
   ) {}
 
@@ -67,33 +72,57 @@ export class LocationComponent {
   }
 
   ngOnInit() {
-    this.propertyId = this.route.snapshot.paramMap.get('id')!;
-    console.log(this.route.snapshot.queryParams['filters']);
-    if (!this.route.snapshot.queryParams['filters']) {
+    this.propertyId = this.router.snapshot.paramMap.get('id')!;
+    console.log(this.router.snapshot.queryParams['filters']);
+    if (!this.router.snapshot.queryParams['filters']) {
     } else {
-      this.filter = JSON.parse(this.route.snapshot.queryParams['filters']);
+      this.filter = JSON.parse(this.router.snapshot.queryParams['filters']);
     }
 
-    this.propertyService.getProperty(this.propertyId).subscribe((response) => {
-      this.property = response.property;
-      if (isPlatformBrowser(this.platformId)) {
-        // Check if running in the browser
-        initMap(this.property);
-      }
+    this.propertyService.getProperty(this.propertyId).subscribe({
+      next: (response) => {
+        this.property = response.property;
+        if (isPlatformBrowser(this.platformId)) {
+          // Check if running in the browser
+          initMap(this.property);
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        console.error('Failed to load property:', error);
+      },
+      complete: () => {
+        console.log('Property loaded');
+      },
     });
   }
 
   onSubmit() {
+    this.userService.getUser().subscribe({
+      next: (response: HttpResponse<any>) => {},
+      error: (error: HttpErrorResponse) => {
+        if (error.status == 401) {
+          this.route.navigate(['/login']);
+        }
+      },
+      complete: () => {},
+    });
+
     if (this.filter.endDate && this.filter.startDate) {
       this.filter_model = this.filter;
     }
     this.propertyService
       .getPropertyAvailable(Number(this.propertyId), this.filter_model)
-      .subscribe((response) => {
-        this.propertyAvailable = response.isAvailable;
-        if (response.isAvailable) {
-          this.showOverlay = true;
-        }
+      .subscribe({
+        next: (response) => {
+          this.propertyAvailable = response.isAvailable;
+          if (response.isAvailable) {
+            this.showOverlay = true;
+          }
+        },
+        error: (error: HttpErrorResponse) => {},
+        complete: () => {
+          console.log('Property availability check completed');
+        },
       });
   }
 
@@ -122,18 +151,20 @@ export class LocationComponent {
     this.showOverlay = false;
   }
   onSubmitReservation() {
-    this.userService.getUser().subscribe((user) => {
-      this.propertyService
-        .makeReservation(Number(this.propertyId), this.filter_model, user)
-        .subscribe((response) => {
-          if (response.message === 'Succeed') {
-            alert('Booking successful');
-            this.showOverlay = false;
-          } else {
-            alert('Booking failed');
-          }
-        });
-    });
+    this.propertyService
+      .makeReservation(Number(this.propertyId), this.filter_model)
+      .subscribe({
+        next: (response) => {
+          this.showOverlay = false;
+        },
+
+        error: (error) => {
+          console.error('Booking failed:', error);
+        },
+        complete: () => {
+          console.log('Booking completed');
+        },
+      });
   }
 }
 

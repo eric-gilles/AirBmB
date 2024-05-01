@@ -4,7 +4,7 @@ import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -17,18 +17,29 @@ export class LoginComponent {
     email: '',
     password: '',
   };
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {
+    this.userService.getUser().subscribe({
+      next: (response) => {
+        this.router.navigate(['/home']);
+      },
+      error: (error) => {
+        console.error('Not logged in:', error);
+      },
+    });
+  }
 
   onSubmit(): void {
-    this.userService.login(this.user).subscribe(
-      (response) => {
+    this.userService.login(this.user).subscribe({
+      next: (response) => {
         console.log('Logged in successfully!');
         console.log(response);
         this.userService.setToken(response.token);
+        this.router.navigate(['/home']);
       },
-      (error) => {
+      error: (error) => {
         console.error('Login failed:', error);
-      }
-    );
+      },
+    });
   }
 }
+

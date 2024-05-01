@@ -8,11 +8,11 @@
           <form #f="ngForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
               <label for="start-date">Date de début de location:</label>
-              <input type="date" class="form-control" id="start-date" name="start-date" [(ngModel)]="criteria.startDate">
+              <input type="date" class="form-control" id="start-date" name="start-date" [(ngModel)]="criteria.startDate" required>
             </div>
             <div class="form-group">
               <label for="end-date">Date de fin de location:</label>
-              <input type="date" class="form-control" id="end-date" name="end-date" [(ngModel)]="criteria.endDate" >
+              <input type="date" class="form-control" id="end-date" name="end-date" [(ngModel)]="criteria.endDate" required>
             </div>
             <div class="form-group">
               <label for="location">Ville:</label>
@@ -28,7 +28,7 @@
             </div>
             <div class="form-group">
               <label for="min-beds">Nombre de couchages minimum:</label>
-              <input type="number" class="form-control" id="min-beds" name="min-beds" [(ngModel)]="criteria.minBeds">
+              <input type="number" class="form-control" id="min-beds" name="min-beds" [(ngModel)]="criteria.minBeds" required>
             </div>
             <div class="form-group">
               <label for="max-distance">Distance maximum au centre-ville (mètres):</label>

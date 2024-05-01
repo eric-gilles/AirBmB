@@ -41,8 +41,8 @@ export const updatePropertySchema = Joi.object({
   loggedUserEmail: Joi.string().email().required(),
 });
 
-const dateRegex =
-  /^(0[1-9]|[1-2][0-9]|3[0-1])[\/\-](0[1-9]|1[0-2])[\/\-](\d{4})$/;
+const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+
 export const createBookingSchema = Joi.object({
   idProperty: Joi.number().required(),
   renterEmail: Joi.string().email().required(),

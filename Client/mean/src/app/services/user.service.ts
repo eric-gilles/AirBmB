@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { Observable, tap } from 'rxjs';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -17,8 +17,6 @@ export class UserService {
       'Access-Control-Allow-Origin': '*',
     }),
   };
-  static cookieService: any;
-
   constructor(private http: HttpClient, private cookieService: CookieService) {}
 
   login(credentials: any): Observable<any> {
@@ -43,14 +41,21 @@ export class UserService {
 
   setToken(token: string): void {
     this.cookieService.set('token', token);
-    console.log(this.cookieService.get('token'));
   }
 
-  static getToken(): string {
+  getToken(): string {
     return this.cookieService.get('token');
   }
 
   getUser(): Observable<any> {
-    return this.http.get<any>(`${this.API_URL}/user`, this.httpOptions);
+    const token = this.cookieService.get('token');
+    const httpOptions = {
+      headers: this.httpOptions.headers.append(
+        'Authorization',
+        `Bearer ${token}`
+      ),
+    };
+
+    return this.http.get<any>(`${this.API_URL}/user`, httpOptions);
   }
 }

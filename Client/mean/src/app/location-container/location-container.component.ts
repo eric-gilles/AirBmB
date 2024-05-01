@@ -30,20 +30,25 @@ export class LocationContainerComponent {
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      if (!params['filters']) {
-        this.propertyService.getProperties().subscribe((data) => {
-          this.properties = data.properties;
-        });
-        return;
-      }
-      this.criteria = JSON.parse(params['filters']);
+    this.route.queryParams.subscribe({
+      next: (params) => {
+        if (!params['filters']) {
+          this.propertyService.getProperties().subscribe((data) => {
+            this.properties = data.properties;
+          });
+          return;
+        }
+        this.criteria = JSON.parse(params['filters']);
 
-      this.propertyService
-        .getPropertiesAvailable(this.criteria)
-        .subscribe((data) => {
-          this.properties = data.properties;
-        });
+        this.propertyService
+          .getPropertiesAvailable(this.criteria)
+          .subscribe((data) => {
+            this.properties = data.properties;
+          });
+      },
+      error: (error) => {
+        console.error('Error:', error);
+      },
     });
   }
 }
