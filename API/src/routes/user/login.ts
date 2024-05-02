@@ -18,8 +18,11 @@ export default (app: Express) => {
       }
 
       if (user.password === password) {
-        const token = jwt.sign({ email, admin:user.isAdmin, id: user.idUser }, secretKey, { expiresIn: "1h" });
-
+        const token = jwt.sign(
+          { email, admin: user.isAdmin, id: user.idUser },
+          secretKey,
+          { expiresIn: "1h" }
+        );
         return res.status(200).json({ message: "Succeed", User: user, token });
       }
       return res
