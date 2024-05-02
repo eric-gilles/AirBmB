@@ -72,7 +72,7 @@ label:before {
 
 .input-container label {
     position: absolute;
-    top: 40%;
+    top: 35%;
     left: 10px;
     transform: translateY(-50%);
     color: #666;
@@ -83,14 +83,14 @@ label:before {
 
 .input-container input:focus + label,
 .input-container input:not(:placeholder-shown) + label {
-    top: -10px;
+    top: -9px;
     font-size: 12px;
     color: #999;
 }
 
 .input-container input {
     padding: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     border-radius: 5px;
     border: 1px solid #ccc;
     width: 100%;
