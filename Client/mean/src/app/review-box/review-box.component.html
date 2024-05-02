@@ -13,42 +13,35 @@
                         <span class="stars"><ng-container *ngFor="let i of getStarsArray(comment.note)">&#9733;</ng-container></span>
                     </p>   
                 </span>
-                <span class="be-comment-time">le {{ comment.createdAt | date:'d MMMM y \'à\' HH:mm' }}</span>
+                <span class="be-comment-time">le {{ comment.createdAt}}</span>
                 <p class="be-comment-text">{{comment.comment}}</p>
             </div>
         </div>
         </ng-container>
-        <form class="form-block">
+        <form class="form-block" #f="ngForm" (ngSubmit)="makeComment()">
             <div class="row">
-                <div class="col-xs-12 col-sm-6">
+                <div class="col-xs-12">
                     <div class="form-group">
-                        <input class="form-input" type="text" placeholder="Prénom et Nom">
-                    </div>
-                </div>
-                <div class="col-xs-12 col-sm-6">
-                    <div class="form-group">
-                        <input class="form-input" type="text" placeholder="Email">
-                    </div>
-                </div>
-                <div class="col-xs-12">                                    
-                    <div class="form-group">
-                        <select class="form-input" required="">
+                        <select class="form-input" name="note" [(ngModel)]="commentSend.note" required>
                             <option value="">Sélectionner une note</option>
-                            <option value="5">5 &#9733;</option>
-                            <option value="4">4 &#9733;</option>
-                            <option value="3">3 &#9733;</option>
-                            <option value="2">2 &#9733;</option>
                             <option value="1">1 &#9733;</option>
+                            <option value="2">2 &#9733;</option>
+                            <option value="3">3 &#9733;</option>
+                            <option value="4">4 &#9733;</option>
+                            <option value="5">5 &#9733;</option>
                         </select>
                     </div>
                 </div>
-                <div class="col-xs-12">                                    
+                <div class="col-xs-12">
                     <div class="form-group">
-                        <textarea class="form-input" required="" placeholder="Votre Commentaire"></textarea>
+                        <textarea class="form-input" name="comment" [(ngModel)]="commentSend.comment" required placeholder="Votre Commentaire"></textarea>
                     </div>
                 </div>
-                <a class="btn">Commenter</a>
+                <div class="col-xs-12">
+                    <input class="btn" type="submit" value="Confirmer">
+                </div>
             </div>
         </form>
+        
     </div>
 </div>

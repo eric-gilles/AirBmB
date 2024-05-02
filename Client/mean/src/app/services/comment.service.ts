@@ -21,7 +21,7 @@ export class CommentService {
 
   constructor(private http: HttpClient, private userService: UserService) {}
 
-  getComentsByProperty(idProperty: number): Observable<any> {
+  getCommentsByProperty(idProperty: number): Observable<any> {
     return this.http.get<any>(
       `${this.API_URL}/property/${String(idProperty)}/comments`,
       this.httpOptions
@@ -36,9 +36,13 @@ export class CommentService {
     return this.userService.getUser().pipe(
       switchMap((response) => {
         const token = this.userService.getToken();
+        console.log(token);
         const body = { comment, note };
         const httpOptions = {
-          headers: this.httpOptions.headers.append('Authorization', token),
+          headers: this.httpOptions.headers.append(
+            'Authorization',
+            'Bearer ' + token
+          ),
         };
         return this.http.post<any>(
           `${this.API_URL}/comment/${idProperty}`,

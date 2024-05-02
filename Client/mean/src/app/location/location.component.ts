@@ -11,6 +11,7 @@ import { UserService } from '../services/user.service';
 import mapboxgl from 'mapbox-gl';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { ReviewBoxComponent } from '../review-box/review-box.component';
+import { CommentService } from '../services/comment.service';
 
 @Component({
   selector: 'app-location',
@@ -60,9 +61,29 @@ export class LocationComponent {
     private propertyService: PropertyService,
     private userService: UserService,
     private route: Router,
+    private commentService: CommentService,
     @Inject(PLATFORM_ID) private platformId: Object // Inject PLATFORM_ID
   ) {}
 
+  setAverageScore() {
+    if (!this.propertyId) return;
+    this.commentService
+      .getCommentsByProperty(Number(this.propertyId))
+      .subscribe({
+        next: (response) => {
+          if (response.comments.length > 0) {
+            let sum: any = 0;
+            for (const comment of response.comments) {
+              sum += comment.note;
+            }
+            this.property.review = Math.round(sum / response.comments.length);
+          }
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
+  }
   decrementValue() {
     if (this.filter_model.minBeds! > 1) {
       this.filter_model.minBeds!--;
@@ -77,6 +98,8 @@ export class LocationComponent {
 
   ngOnInit() {
     this.propertyId = this.router.snapshot.paramMap.get('id')!;
+    this.setAverageScore();
+
     console.log(this.router.snapshot.queryParams['filters']);
     if (!this.router.snapshot.queryParams['filters']) {
     } else {
