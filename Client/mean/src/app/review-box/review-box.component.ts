@@ -19,6 +19,7 @@ export class ReviewBoxComponent {
     comment: '',
     note: '',
   };
+  firstTime = true;
   constructor(private commentService: CommentService) {}
 
   ngOnInit(): void {
@@ -52,6 +53,7 @@ export class ReviewBoxComponent {
     if (!this.idProperty) return;
     this.commentService.getCommentsByProperty(this.idProperty).subscribe({
       next: (response) => {
+        console.log(response);
         for (var comment of response.comments) {
           comment.createdAt = new Date(comment.createdAt);
           const options = {

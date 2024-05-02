@@ -18,7 +18,7 @@
             </div>
         </div>
         </ng-container>
-        <form class="form-block" #f="ngForm" (ngSubmit)="makeComment()">
+        <form class="form-block" #f="ngForm" (load)="getComments()" (ngSubmit)="makeComment()">
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">

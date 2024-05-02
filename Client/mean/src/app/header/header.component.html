@@ -20,13 +20,20 @@
             <li class="nav-item">
               <!-- <a class="nav-link" href="/history"><i class="fas fa-history logo"></i> Historique</a> -->
             </li>
-            <li class="nav-item" *ngIf="isLoggedIn()">
-              <a class="nav-link" href="/logout"><i class="fas fa-user logo"></i> {{userName}}</a>
-            </li>
-            <li class="nav-item" *ngIf="!isLoggedIn()"> <!-- Modify the code to use a function call -->
-              <a class="nav-link" href="/signup"><i class="fas fa-user logo"></i> Connexion</a>
-            </li>
-            
+            <ng-container *ngIf="userName">
+              <li class="nav-item">
+                <a class="nav-link"><i class="fas fa-user logo"></i> {{userName}}</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" (click)="logout()"><i class="fas fa-sign-out-alt logo"></i> Logout </a>
+              </li>
+
+            </ng-container>
+            <ng-container *ngIf="!userName">
+              <li class="nav-item">
+                <a class="nav-link" href="/signup"><i class="fas fa-user logo"></i> Connexion</a>
+              </li>
+            </ng-container>
           </ul>
         </div>
     </div> 

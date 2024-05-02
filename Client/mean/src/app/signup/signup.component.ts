@@ -4,6 +4,7 @@ import { FooterComponent } from '../footer/footer.component';
 import { UserService } from '../services/user.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -20,13 +21,12 @@ export class SignupComponent {
     firstname: '',
     lastname: '',
   };
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   onSubmit(): void {
     this.userService.register(this.user).subscribe(
       (response) => {
-        console.log('Sign up successfully!');
-        console.log(response);
+        this.router.navigate(['/login']);
       },
       (error) => {
         console.error('Sign up failed:', error);
