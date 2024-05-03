@@ -6,6 +6,7 @@ import { ErrorComponent } from './error/error.component';
 import { LocationContainerComponent } from './location-container/location-container.component';
 import { LocationComponent } from './location/location.component';
 import { HistoryComponent } from './history/history.component';
+import { ProfilComponent } from './profil/profil.component';
 
 export const routes: Routes = [
   {
@@ -34,6 +35,11 @@ export const routes: Routes = [
     title: 'Login',
   },
   {
+    path: 'profil',
+    component: ProfilComponent,
+    title: 'Mon Profile',
+  },
+  {
     path: 'signup',
     component: SignupComponent,
     title: 'Signup',
@@ -47,5 +53,9 @@ export const routes: Routes = [
     path: 'history',
     component: HistoryComponent,
     title: 'Historique de Visite',
+  },
+  {
+    path: '**',
+    redirectTo: 'error',
   },
 ];
