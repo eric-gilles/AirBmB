@@ -1,58 +1,119 @@
-# HAI806I - Projet MEAN 2023-2024 (facultatif / coeff. 15%)
+<div style="text-align:center;">
+    <img src="Client/mean/src/assets/logo.png" width="200">
+    <h2> AirBmB - Application web de location de logements</h2>
+    <h3>Réalisée dans le cadre de l'UE <i>"HAI806I Architecture Web Avancée"</i></h3>
+    <a href="Others/projet_MEAN_HAI806I_2023_2024.pdf">Lien du Sujet</a>
+    <br/><br/>
+    <img src="Others/img_home.png" width="800">
+    <br/><br/>
+</div>
 
-**Pierre Pompidor**
 
-Création d’une application web de location de logements (type AirBnB). L’application web devra être créée sous une architecture MEAN (MongoDB, Express, Angular et Node.js).
+<!-- Site déployé sur le lien suivant :  -->
 
-Modélisation et création d’une base de données gérée par MongoDB :
+# Auteurs :
+- [*Éric Gilles*](https://github.com/eric-gilles/)
+- [*Morgan Navel*](https://github.com/MorganNavel/)
 
-La base comportera au moins les trois collections suivantes :
 
-- **Utilisateurs** : mail, prénom, nom, téléphone
-- **Biens** : idBien, mailProprio (\*), commune, rue, cp, nbCouchages, nbChambres, distance, prix
-- **Locations** : idLocation, idBien (\*), mailLoueur (\*), dateDébut (\*), dateFin (\*), avis
+## Présentation du projet :
+L’application web est sous une architecture MEAN (MongoDB, Express, Angular et Node.js) ainsi que Bootstrap pour le design.
+<h3>1/ Architecture MEAN : MongoDB, Express, Angular, Node.js</h3>
+<div style="text-align:left;">
+  <img src="Others/mean.png" width="200"><br/><br/>
+</div>
 
-(\*) "clef étrangère" (\*\*) Les dates seront exprimées sous la forme de nombres à 8 chiffres de type AAAAMMJJ.
+- **MongoDB** : base de données
+- **Express** : framework pour Node.js
+- **Angular** : framework pour le front-end
+- **Node.js** : environnement d'exécution JavaScript côté serveur
 
-Les documents des collections Utilisateurs et Biens peuvent être directement créés dans la base.
+[![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?logo=mongodb&style=for-the-badge&logoColor=white)](#)
+[![Express](https://img.shields.io/badge/Express.js-%23404d59.svg?logo=express&style=for-the-badge&logoColor=white)](#)
+[![Angular](https://img.shields.io/badge/Angular-%23DD0031.svg?logo=angular&style=for-the-badge&logoColor=white)](#)
+[![Node.js](https://img.shields.io/badge/Node.js-%2343853D.svg?logo=node.js&style=for-the-badge&logoColor=white)](#)
+[![Bootstrap](https://img.shields.io/badge/Bootstrap-%23563D7C.svg?logo=bootstrap&style=for-the-badge&logoColor=white)](#)
+<br/>
 
-L’internaute pourra :
+### 2/ Structure des échanges entre les différentes couches :
+<img src="https://webimages.mongodb.com/_com_assets/cms/mean-stack-0qy07j83ah.png?auto=format%2Ccompress" width="600">
 
-- Faire une recherche multicritères (de 0 à 7) suivant :
+### 3/ Librairies utilisées :
+- **Mongoose** : pour la gestion de la base de données MongoDB
+- **Cors** : pour permettre les requêtes HTTP cross-origin
+- **Dotenv** : pour la gestion des variables d'environnement
+- **Joi** : pour la validation des données
+- **Express JWT** : pour la gestion des tokens JWT
+- **Nodemon** : pour le redémarrage automatique du serveur Node.js
+- **Mapbox** : pour la géolocalisation des biens
 
-  - la date de début de location
-  - la date de fin de location
-  - la commune
-  - un prix max
-  - un nombre de chambres min
-  - un nombre de couchages min
-  - une distance max au centre ville (exprimée en mètres)
+## Schéma UML de la Base de données MongoDB :
 
-- Visualiser les biens à louer :
-  Les biens à louer disponibles doivent s’afficher avec leurs caractéristiques et l’avis associé (moyenne des notes données par les loueurs). La sélection d’un bien entraîne une création d’un document dans la table Location.
+![Database Airbmb](Others/Database.png)
 
-  Dans un second temps, un avis (note) peut être laissé.
 
-- En bonus :
-  - Les utilisateurs pourraient s’authentifier
-  - Les biens pourraient être géolocalisés sur une carte
-  - Les avis pourraient être commentés
 
-**Modalités de rendu :**
+## Liste des Fonctionnalités :
 
-Le travail devra être préférentiellement effectué en binômes.
+- **Recherche multicritères** :
+  - Date de début de location
+  - Date de fin de location
+  - Commune
+  - Prix max
+  - Nombre de chambres min
+  - Nombre de couchages min
+  - Distance max au centre ville (exprimée en mètres)
+- **Visualisation des biens à louer** :
+  - Caractéristiques des biens (ville, prix/nuit, nombre de chambres, nombre de couchages, distance au centre ville)
+  - Avis associé (moyenne des notes données par les loueurs)
 
-Le rendu se fera par une démonstration sur machine et un dépôt via le Moodle de HAI806I (le dépôt n’est pas encore ouvert). Il constituera en une archive (zip ou tar) qui contiendra :
+- **Sélection d'un bien** :
+  - Création d'un document dans la table Location
+  - Facturation fictive
 
-- un mini-rapport comportant :
+- **Géolocalisation sur une carte**
 
-  - les noms des membres du groupe
-  - le script de création des collections/documents de la base MongoDB initiale
-  - la liste des services web (méthodes et routes)
-  - la liste des composants Angular
-  - les différentes captures d’écran de votre application
-  - toute information que vous jugerez utile de me donner
+- **Voir Avis d'un bien**
+- **Laisser un avis (notes et commentaires)**
 
-- vos codes (en ce qui concerne Angular, le contenu du dossier src)
+- **Authentification des utilisateurs (Enregistrement / Connexion)**
 
-La mise en ligne de votre application web n’est pas obligatoire (de même qu’un lien sur un dépôt GIT) même si cela serait intéressant.
+
+- **Affichage du profil utilisateur**
+
+## Installation du projet en local:
+1. Cloner le projet :
+```bash
+git clone https://github.com/MorganNavel/projet-mean.git
+```
+
+2. Installer les dépendances du serveur :
+```bash
+cd API/
+npm i
+```
+
+3. Installer les dépendances du client :
+```bash
+cd Client/mean/
+npm i
+```
+
+4. Lancez le serveur MongoDB :
+```bash
+sudo service mongod start
+```
+
+5. Lancer le serveur Node.js :
+```bash
+cd API/src/
+npm run dev:start
+```
+
+5. Lancer le client Angular dans un autre terminal :
+```bash
+cd Client/mean/
+ng serve
+```
+
+6. Ouvrir un navigateur et accéder à l'adresse suivante :  [http://localhost:4200](http://localhost:4200)
