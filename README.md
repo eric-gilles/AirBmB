@@ -4,7 +4,9 @@
     <h3>Réalisée dans le cadre de l'UE <i>"HAI806I Architecture Web Avancée"</i></h3>
     <a href="Others/projet_MEAN_HAI806I_2023_2024.pdf">Lien du Sujet</a>
     <br/><br/>
+    <h3>Images du site :</h3>
     <img src="Others/img_home.png" width="800">
+    <img src="Others/img_locations.png" width="800">
     <br/><br/>
 </div>
 

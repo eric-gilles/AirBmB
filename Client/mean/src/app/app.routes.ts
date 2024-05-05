@@ -22,7 +22,7 @@ export const routes: Routes = [
   {
     path: 'locations',
     component: LocationContainerComponent,
-    title: 'Location',
+    title: 'Locations',
   },
   {
     path: 'home',
