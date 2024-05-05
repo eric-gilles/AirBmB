@@ -5,7 +5,7 @@
 }
 
 .location-card {
-  flex: 0 0 calc(33.33% - 20px);
+  flex: 20 0 calc(33.33% - 20px);
   margin-bottom: 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -25,6 +25,6 @@
 
 app-footer {
   position: relative;
-  margin-top: 40px;
+  margin-top: 40vh;
   z-index: 1;
 }
