@@ -1,43 +1,50 @@
-<!-- Form -->
-<div class="container mt-5">
+<div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8">
-      <div class="card">
-        <div class="card-header">Rechercher des Locations</div>
+      <div class="card col-md-8">
         <div class="card-body">
-          <form #f="ngForm" (ngSubmit)="onSubmit()">
+          <form #f="ngForm" (ngSubmit)="onSubmit()" class="airbnb-form">
             <div class="form-group">
-              <label for="start-date">Date de début de location:</label>
-              <input type="date" class="form-control" id="start-date" name="start-date" [(ngModel)]="criteria.startDate" required>
+              <input type="text" class="form-control" id="location" name="location" [(ngModel)]="criteria.city" placeholder="Ville de destination">
             </div>
-            <div class="form-group">
-              <label for="end-date">Date de fin de location:</label>
-              <input type="date" class="form-control" id="end-date" name="end-date" [(ngModel)]="criteria.endDate" required>
+            <div class="row">
+              <div class="col-md-6">
+                <label for="start-date">Date de début :</label>
+                <input type="date" class="form-control" id="start-date" name="start-date" [(ngModel)]="criteria.startDate" required placeholder="Choisissez la date de début">
+              </div>
+              <div class="col-md-6">
+                <label for="end-date">Date de fin :</label>
+                <input type="date" class="form-control" id="end-date" name="end-date" [(ngModel)]="criteria.endDate" required placeholder="Choisissez la date de fin">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="location">Ville:</label>
-              <input type="text" class="form-control" id="location" name="location" [(ngModel)]="criteria.city">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="min-bedrooms">Nombre de chambres min :</label>
+                <input type="number" class="form-control" id="min-bedrooms" name="min-bedrooms" [(ngModel)]="criteria.minBedrooms">
+              </div>
+              <div class="col-md-6">
+                <label for="min-beds">Nombre de couchages min: </label>
+                <input type="number" class="form-control" id="min-beds" name="min-beds" [(ngModel)]="criteria.minBeds">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="max-price">Prix maximum:</label>
-              <input type="number" class="form-control" id="max-price" name="max-price" [(ngModel)]="criteria.maxPrice">
+            <div class="row">
+              <div class="col-md-6">
+                <label for="max-price">Prix max :</label>
+                <input type="number" class="form-control" id="max-price" name="max-price" [(ngModel)]="criteria.maxPrice">
+              </div>
+              <div class="col-md-6">
+                <label for="max-distance">Distance max centre-ville(m):</label>
+                <input type="number" class="form-control" id="max-distance" name="max-distance" [(ngModel)]="criteria.maxDistance">
+              </div>
             </div>
-            <div class="form-group">
-              <label for="min-bedrooms">Nombre de chambres minimum:</label>
-              <input type="number" class="form-control" id="min-bedrooms" name="min-bedrooms" [(ngModel)]="criteria.minBedrooms">
-            </div>
-            <div class="form-group">
-              <label for="min-beds">Nombre de couchages minimum:</label>
-              <input type="number" class="form-control" id="min-beds" name="min-beds" [(ngModel)]="criteria.minBeds" required>
-            </div>
-            <div class="form-group">
-              <label for="max-distance">Distance maximum au centre-ville (mètres):</label>
-              <input type="number" class="form-control" id="max-distance" name="max-distance" [(ngModel)]="criteria.maxDistance">
-            </div>
-            <button type="submit" class="btn btn-primary">Rechercher</button>
+            <button type="submit" class="btn btn-primary mt-3">Rechercher</button>
           </form>
+          <div *ngIf="showAlert" class="alert alert-danger mt-3" role="alert">
+            {{ alertMessage }}
+            <button type="button" class="close" (click)="closeAlert()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>

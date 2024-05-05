@@ -9,9 +9,9 @@
         <p><strong>Code Postal:</strong> {{ property.zipCode }}</p>
         <p><strong>Nombre de couchages :</strong> {{ property.numSleeps }}</p>
         <p><strong>Nombre de lits :</strong> {{ property.numBedrooms }}</p>
-        <p><strong>Distance du centre ville :</strong> {{ property.distance }} km</p>
-        <p><strong>Prix par Nuit:</strong> {{ property.price }} € </p>
-        <p *ngIf="property.review"><strong>Review Score:</strong> {{ property.review }}</p>
+        <p><strong>Distance du centre ville :</strong> {{ property.distance }} m</p>
+        <p><strong>Prix par Nuit :</strong> {{ property.price }} € </p>
+        <p *ngIf="property.review"><strong>Score :</strong> {{ property.review }}/5 </p>
         <div *ngIf="!filter.startDate || !filter.endDate">
           <div class="form-group">
             <label for="start-date">Début :</label>
@@ -63,20 +63,24 @@
       </div>
       <form #f="ngForm" (ngSubmit)="onSubmitReservation()">
         <div class="payment-form">
-          <h2>Informations de Paiement</h2>
-          <div class="form-group">
-            <label for="card-number">Numéro de Carte :</label>
-            <input type="text" class="form-control" id="card-number" name="card-number" [(ngModel)]="payment.cardNumber" required>
+          <h2>Informations de Paiement :</h2>
+          <div class="container">
+            <div class="form-group">
+              <label for="card-number">Numéro de Carte :</label>
+              <input type="text" class="form-control" id="card-number" name="card-number" [(ngModel)]="payment.cardNumber" required>
+            </div>
+            <div class="row date_ccv">
+              <div class="form-group col-md-6">
+                <label for="expiration-date">Date d'expiration :</label>
+                <input type="text" class="form-control" id="expiration-date" name="expiration-date" [(ngModel)]="payment.expirationDate" required>
+              </div>
+              <div class="form-group col-md-6">
+                <label for="cvv">CVV:</label>
+                <input type="text" class="form-control" id="cvv" name="cvv" [(ngModel)]="payment.cvv" required>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="expiration-date">Date d'expiration :</label>
-            <input type="text" class="form-control" id="expiration-date" name="expiration-date" [(ngModel)]="payment.expirationDate" required>
-          </div>
-          <div class="form-group">
-            <label for="cvv">CVV:</label>
-            <input type="text" class="form-control" id="cvv" name="cvv" [(ngModel)]="payment.cvv" required>
-          </div>
-          <div class="button-group">
+          <div class="button-group col-md-16">
             <button class="cancel-button" (click)="closeOverlay()">Annuler</button>
             <input type="submit" class="confirm-button" value="Confirmer">
           </div>

@@ -1,7 +1,17 @@
 <app-header></app-header>
 
-<ng-container *ngFor="let propertyItem of properties">
-  <location-card [property]="propertyItem" [filter]="criteria"></location-card>
+<ng-container *ngIf="properties && properties.length > 0">
+  <ng-container *ngFor="let propertyItem of properties">
+    <location-card [property]="propertyItem" [filter]="criteria"></location-card>
+  </ng-container>
 </ng-container>
+
+<ng-container *ngIf="!properties || properties.length === 0">
+  <div class="empty">
+    <h2>Aucun bien ne correspond à vos critères de recherche.</h2>
+  </div>
+  <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+</ng-container>
+
 
 <app-footer></app-footer>

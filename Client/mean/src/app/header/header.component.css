@@ -6,3 +6,14 @@
 .nav-item {
     text-transform: bold;
 }
+
+@media screen and (max-width: 768px){
+    .nav-item {
+        font-size: 12px;
+    }
+
+    .header {
+        position: sticky;
+        padding: 10px;
+    }
+}

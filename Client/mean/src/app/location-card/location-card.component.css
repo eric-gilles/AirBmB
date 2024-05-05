@@ -10,7 +10,10 @@
 }
 
 .listing-photo {
-  border-radius: 10px 10px 0 0;
+  border-radius: 10px;
+  margin-bottom: 2%;
+  width: 100%;
+  object-fit: cover;
 }
 
 .listing h2 {
@@ -30,14 +33,24 @@
 }
 
 .listing .price {
-  color: #000; /* Noir */
+  color: #000;
   font-weight: bold;
   font-size: 18px;
 }
 
-
-
 .listing div {
   display: flex;
   align-items: center;
+}
+
+.rating {
+  font-size: 20px;
+  font-weight: bold;
+  color: #241907;
+}
+
+.stars {
+  font-size: 30px;
+  color: #f39c12;
+  margin-bottom: 1%;
 }

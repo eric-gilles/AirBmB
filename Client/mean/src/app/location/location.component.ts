@@ -1,5 +1,5 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common'; // Import isPlatformBrowser
+import { Component, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { HeaderComponent } from '../header/header.component';
 import { FooterComponent } from '../footer/footer.component';
 import { PropertyService } from '../services/property.service';
@@ -27,6 +27,8 @@ import { CommentService } from '../services/comment.service';
   ],
 })
 export class LocationComponent {
+  @ViewChild(ReviewBoxComponent) reviewBoxComponent!: ReviewBoxComponent;
+
   propertyId: string = '';
   user: any;
   property: any = {};
@@ -62,45 +64,16 @@ export class LocationComponent {
     private userService: UserService,
     private route: Router,
     private commentService: CommentService,
-    @Inject(PLATFORM_ID) private platformId: Object // Inject PLATFORM_ID
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  setAverageScore() {
-    if (!this.propertyId) return;
-    this.commentService
-      .getCommentsByProperty(Number(this.propertyId))
-      .subscribe({
-        next: (response) => {
-          if (response.comments.length > 0) {
-            let sum: any = 0;
-            for (const comment of response.comments) {
-              sum += comment.note;
-            }
-            this.property.review = Math.round(sum / response.comments.length);
-          }
-        },
-        error: (err) => {
-          console.error(err);
-        },
-      });
-  }
-  decrementValue() {
-    if (this.filter_model.minBeds! > 1) {
-      this.filter_model.minBeds!--;
-    }
-  }
-
-  incrementValue() {
-    if (this.filter_model.minBeds! < this.property.numSleeps) {
-      this.filter_model.minBeds!++;
-    }
-  }
-
-  ngOnInit() {
+  ngOnInit(): void {
     this.propertyId = this.router.snapshot.paramMap.get('id')!;
     this.setAverageScore();
 
-    console.log(this.router.snapshot.queryParams['filters']);
+    // Call method of ReviewBoxComponent on initialization
+    this.callReviewBoxMethod();
+
     if (!this.router.snapshot.queryParams['filters']) {
     } else {
       this.filter = JSON.parse(this.router.snapshot.queryParams['filters']);
@@ -121,6 +94,38 @@ export class LocationComponent {
         console.log('Property loaded');
       },
     });
+  }
+
+  decrementValue() {
+    if (this.filter_model.minBeds! > 1) {
+      this.filter_model.minBeds!--;
+    }
+  }
+
+  incrementValue() {
+    if (this.filter_model.minBeds! < this.property.numSleeps) {
+      this.filter_model.minBeds!++;
+    }
+  }
+
+  setAverageScore() {
+    if (!this.propertyId) return;
+    this.commentService
+      .getCommentsByProperty(Number(this.propertyId))
+      .subscribe({
+        next: (response) => {
+          if (response.comments.length > 0) {
+            let sum: any = 0;
+            for (const comment of response.comments) {
+              sum += comment.note;
+            }
+            this.property.review = Math.round(sum / response.comments.length);
+          }
+        },
+        error: (err) => {
+          console.error(err);
+        },
+      });
   }
 
   onSubmit() {
@@ -153,30 +158,6 @@ export class LocationComponent {
       });
   }
 
-  calculateNumberOfNights() {
-    // Convertir les chaînes de caractères en objets Date
-    const startDate = new Date(this.filter_model.startDate);
-    const endDate = new Date(this.filter_model.endDate);
-
-    // Calculer la différence en millisecondes
-    const differenceMillis = endDate.getTime() - startDate.getTime();
-
-    // Convertir la différence en jours (1 jour = 24 * 60 * 60 * 1000 millisecondes)
-    const differenceDays = differenceMillis / (24 * 60 * 60 * 1000);
-
-    // Retourner le nombre de nuits arrondi à l'entier supérieur
-    return Math.ceil(differenceDays);
-  }
-  calculateTotalPrice() {
-    // Calculer le nombre de nuits
-    const numberOfNights = this.calculateNumberOfNights();
-
-    // Calculer le prix total
-    return numberOfNights * this.property.price;
-  }
-  closeOverlay() {
-    this.showOverlay = false;
-  }
   onSubmitReservation() {
     this.propertyService
       .makeReservation(Number(this.propertyId), this.filter_model)
@@ -193,6 +174,36 @@ export class LocationComponent {
         },
       });
   }
+
+  callReviewBoxMethod(): void {
+    if (this.reviewBoxComponent) {
+      this.reviewBoxComponent.getComments();
+    }
+  }
+
+  calculateNumberOfNights() {
+    // Convertir les chaînes de caractères en objets Date
+    const startDate = new Date(this.filter_model.startDate);
+    const endDate = new Date(this.filter_model.endDate);
+
+    // Calculer la différence en millisecondes
+    const differenceMillis = endDate.getTime() - startDate.getTime();
+
+    // Convertir la différence en jours (1 jour = 24 * 60 * 60 * 1000 millisecondes)
+    const differenceDays = differenceMillis / (24 * 60 * 60 * 1000);
+
+    // Retourner le nombre de nuits arrondi à l'entier supérieur
+    return Math.ceil(differenceDays);
+  }
+  
+  calculateTotalPrice() {
+    const numberOfNights = this.calculateNumberOfNights(); // Calculer le nombre de nuits
+    return numberOfNights * this.property.price; // retourner le prix total
+  }
+
+  closeOverlay() {
+    this.showOverlay = false;
+  }
 }
 
 function initMap(property: any) {
@@ -205,7 +216,7 @@ function initMap(property: any) {
     container: 'map-container', // container ID
     style: 'mapbox://styles/mapbox/streets-v12', // style URL
     center: center,
-    zoom: 13, // starting zoom
+    zoom: 12, // starting zoom
   });
   // Add a marker at the center of the map
   new mapboxgl.Marker().setLngLat(center).addTo(map);

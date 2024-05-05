@@ -5,6 +5,7 @@ import { Comment } from '../Comment';
 import { FormsModule } from '@angular/forms';
 import { response } from 'express';
 import { error } from 'console';
+
 @Component({
   selector: 'app-review-box',
   standalone: true,
@@ -20,6 +21,7 @@ export class ReviewBoxComponent {
     note: '',
   };
   firstTime = true;
+  showError = false;
   constructor(private commentService: CommentService) {}
 
   ngOnInit(): void {
@@ -31,22 +33,23 @@ export class ReviewBoxComponent {
   makeComment(): void {
     if (!this.idProperty) return;
     console.log(this.commentSend);
-    if (this.commentSend.comment !== '') {
-      this.commentService
-        .makeComment(
-          this.idProperty,
-          this.commentSend.comment,
-          parseInt(this.commentSend.note)
-        )
-        .subscribe({
-          next: (response) => {
-            this.getComments();
-          },
-          error: (error) => {
-            console.log(error);
-          },
-        });
+    if (!this.commentSend.comment || !this.commentSend.note || this.commentSend.comment === '' || this.commentSend.note === '') {
+      alert('Veuillez saisir un commentaire et une note');
+      return;
     }
+
+    this.commentService.makeComment(
+      this.idProperty,
+      this.commentSend.comment,
+      parseInt(this.commentSend.note)
+    ).subscribe({
+      next: () => {
+        this.getComments();
+      },
+      error: (err) => {
+        console.error('Error making comment:', err);
+      },
+    });
   }
 
   getComments(): void {

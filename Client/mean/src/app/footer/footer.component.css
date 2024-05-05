@@ -1,0 +1,35 @@
+/* Footer */
+#sticky-footer {
+    position: relative;
+
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    z-index: 999;
+}
+
+#sticky-footer img {
+    height: 40px;
+}
+
+#sticky-footer .container {
+    text-align: center;
+}
+
+#sticky-footer p {
+    margin: 0;
+    padding-bottom: 1.5rem ;
+}
+
+#sticky-footer .text-muted {
+    margin-top: 5px;
+}
+
+@media (max-width: 576px) {
+    #sticky-footer {
+        position: relative;
+    }
+    #sticky-footer img {
+        height: 30px;
+    }
+}
