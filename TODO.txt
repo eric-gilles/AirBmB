@@ -1,4 +1,0 @@
-TO DO :		 
-- Modification informations user
-- Affichage des commentaires sans rafrachir la page
-- Deploy sous Render

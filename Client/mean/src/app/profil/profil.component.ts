@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { FooterComponent } from "../footer/footer.component";
 import { HeaderComponent } from "../header/header.component";
@@ -11,14 +11,13 @@ import { ActivatedRoute, Router } from '@angular/router';
     standalone: true,
     templateUrl: './profil.component.html',
     styleUrl: './profil.component.css',
-    imports: [FormsModule, FooterComponent, HeaderComponent]
+    imports: [FormsModule, FooterComponent, HeaderComponent, CommonModule]
 })
 export class ProfilComponent {
     userName: string = '';
     mail: string = '';
     phoneNumber: string = '';
     showOverlay: boolean = false;
-
     constructor(
       private userService: UserService,
       private root: ActivatedRoute,
@@ -26,9 +25,17 @@ export class ProfilComponent {
     ) {}
   
     ngOnInit(): void {
+      if (!this.userService.getUser()) {
+        this.router.navigate(['/login']);
+      }
       this.getUserData();
     }
     
+    overlay(): void {
+      this.showOverlay = true;
+      console.log(this.showOverlay);
+    }
+
     getUserData() {
       this.userService.getUser().subscribe({
         next: (data) => {
@@ -38,27 +45,35 @@ export class ProfilComponent {
         },
         error: (error) => {
           console.log(error);
+          this.router.navigate(['/login']);
         },
       });
     }
 
-    updateUser() {
+    updateUser(form: NgForm) {
       const updatedUser = {
-          firstname: this.userName.split(' ')[0],
-          lastname: this.userName.split(' ')[1],
-          email: this.mail,
-          phone: this.phoneNumber
+        password: dat
+        firstname: this.userName.split(' ')[0],
+        lastname: this.userName.split(' ')[1],
+        email: this.mail,
+        phone: this.phoneNumber
+      };user = {
+        email: '',
+        phone: '',
+        firstname: '',
+        lastname: '',
       };
-
       this.userService.updateUser(updatedUser).subscribe({
-          next: (response) => {
-            this.router.navigate(['/profil']);
-            alert('Informations utilisateurs mises à jour');
-          },
-          error: (error) => {
-            console.log(error);
-          }
+        next: (data) => {
+          console.log(data);
+          this.showOverlay = false;
+          this.getUserData();
+        },
+        error: (error) => {
+          console.log(error);
+        },
       });
+
     }
     
     closeOverlay() {
