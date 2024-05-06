@@ -4,8 +4,9 @@
   "description": "Création d’une application web de location de logements (type AirBnB). L’application web devra être créée sous une architecture MEAN (MongoDB, Express, Angular et Node.js).",
   "main": "index.ts",
   "scripts": {
-    "dev:start": "nodemon ./src/index.ts",
-    "prod:start": "node src/index.ts"
+    "dev": "nodemon ./src/index.ts",
+    "build": "tsc",
+    "prod": "node dist.src/index.js"
   },
   "author": "Eric Gilles & Morgan Navel",
   "license": "ISC",
@@ -31,7 +32,8 @@
     "@types/mongoose": "^5.11.97",
     "@types/mongoose-sequence": "^3.0.11",
     "@types/node": "^20.11.17",
-    "faker": "^6.6.6",
+    "babel": "^6.23.0",
+    "faker": "^5.5.3",
     "mongoose-sequence": "^6.0.1",
     "nodemon": "^3.0.3",
     "prettier": "3.2.5"
