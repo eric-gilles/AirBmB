@@ -40,9 +40,7 @@
           </form>
           <div *ngIf="showAlert" class="alert alert-danger mt-3" role="alert">
             {{ alertMessage }}
-            <button type="button" class="close" (click)="closeAlert()">
-              <span aria-hidden="true">&times;</span>
-            </button>
+            <a type="button" class="close" (click)="closeAlert()"> X</a>
           </div>
         </div>
       </div>

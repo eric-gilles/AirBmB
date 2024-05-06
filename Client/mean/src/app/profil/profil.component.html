@@ -12,8 +12,8 @@
                         <h3 class="mb-2"><strong>{{userName}}</strong></h3>
                         <p class="mb-4">Numéro de téléphone : {{ phoneNumber }}</p>
                         <p class="mb-2">E-Mail : <a href="mailto:{{ mail }}">{{ mail }}</a></p>
-                        <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-rounded btn-lg modify">
-                        Modifier mes informations
+                        <button type="button" data-toggle="modal" data-target="#editUserInfoModal" class="btn btn-primary btn-rounded btn-lg modify">
+                            Modifier mes informations
                         </button>
                     </div>
                 </div>
@@ -21,5 +21,34 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="editUserInfoModal" tabindex="-1" role="dialog" aria-labelledby="editUserInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserInfoModalLabel">Modifier mes informations</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form #f="ngForm" (ngSubmit)="updateUser()">
+                    <div class="form-group">
+                        <label for="phoneNumber">Numéro de téléphone</label>
+                        <input type="text" class="form-control" id="phoneNumber" [(ngModel)]="phoneNumber">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-Mail</label>
+                        <input type="email" class="form-control" id="email" [(ngModel)]="mail">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="closeOverlay()">Fermer</button>
+                <button type="button" class="btn btn-primary">Enregistrer</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <app-footer></app-footer>

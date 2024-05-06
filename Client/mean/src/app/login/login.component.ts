@@ -29,6 +29,10 @@ export class LoginComponent {
   }
 
   onSubmit(): void {
+    if (this.user.email === '' || this.user.password === '') {
+      alert('Veuillez remplir tous les champs');
+      return;
+    }
     this.userService.login(this.user).subscribe({
       next: (response) => {
         console.log('Logged in successfully!');
@@ -38,6 +42,7 @@ export class LoginComponent {
       },
       error: (error) => {
         console.error('Login failed:', error);
+        alert('Email ou mot de passe incorrect');
       },
     });
   }

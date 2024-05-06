@@ -117,6 +117,7 @@ input {
   opacity: 0.9;
 }
 
+/* Nouveaux styles pour les alertes */
 .alert {
   position: fixed;
   top: 20px;
@@ -124,10 +125,10 @@ input {
   transform: translateX(-50%);
   z-index: 9999;
   padding: 15px;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   opacity: 0;
-  animation: fadeIn 0.3s ease-in-out forwards;
+  animation: fadeIn 0.5s ease-in-out forwards;
 }
 
 .alert-danger {
@@ -136,29 +137,39 @@ input {
   border: 1px solid #f5c6cb;
 }
 
-.alert-close {
+.close {
   float: right;
-  font-size: 21px;
+  font-size: 18px;
   font-weight: bold;
-  line-height: 1;
-  color: #000;
-  text-shadow: 0 1px 0 #fff;
-  opacity: 0.2;
+  line-height: 20px;
+  color: #000000;
+  opacity: 0.7;
   cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  text-decoration: none;
 }
 
 .alert-close:hover {
-  opacity: 0.5;
+  opacity: 1;
 }
+
 
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateX(80%) translateY(-20px);
+    transform: translateX(180%) translateY(20px);
   }
   to {
     opacity: 1;
-    transform: translateX(100%) translateY(750%);
+    transform: translateX(180%) translateY(1400%);
   }
 }
 
+@media screen and (max-width: 768px) {
+  .alert {
+    position: sticky;
+  }
+  
+}

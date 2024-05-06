@@ -67,7 +67,7 @@ export class LocationComponent {
     @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {        
     this.propertyId = this.router.snapshot.paramMap.get('id')!;
     this.setAverageScore();
 
@@ -130,10 +130,20 @@ export class LocationComponent {
 
   onSubmit() {
     this.userService.getUser().subscribe({
-      next: (response: HttpResponse<any>) => {},
+      next: (response: HttpResponse<any>) => {
+        if (!this.filter_model.startDate || !this.filter_model.endDate) {
+          alert('Veuillez saisir les dates de début et de fin.');
+          return;
+        }
+        if (new Date(this.filter_model.startDate) >= new Date(this.filter_model.endDate)) {
+          alert('La date de début doit être antérieure à la date de fin.');
+          return;
+        }
+      },
       error: (error: HttpErrorResponse) => {
         if (error.status == 401) {
           this.route.navigate(['/login']);
+          alert('Vous devez être connecté pour réserver un bien');
         }
       },
       complete: () => {},
@@ -146,7 +156,6 @@ export class LocationComponent {
       .getPropertyAvailable(Number(this.propertyId), this.filter_model)
       .subscribe({
         next: (response) => {
-          this.propertyAvailable = response.isAvailable;
           if (response.isAvailable) {
             this.showOverlay = true;
           }
@@ -163,6 +172,14 @@ export class LocationComponent {
       .makeReservation(Number(this.propertyId), this.filter_model)
       .subscribe({
         next: (response) => {
+          if (this.payment.cvv === '' || this.payment.cardNumber === '' || this.payment.expirationDate === '' || 
+          !this.payment.cvv || !this.payment.cardNumber || !this.payment.expirationDate) {
+            alert('Veuillez saisir les informations de paiement');
+            return;
+          }
+          this.propertyAvailable = response.isAvailable;
+          console.log('Booking completed');
+          alert('Réservation effectuée avec succès');
           this.showOverlay = false;
         },
 
@@ -170,7 +187,7 @@ export class LocationComponent {
           console.error('Booking failed:', error);
         },
         complete: () => {
-          console.log('Booking completed');
+          
         },
       });
   }

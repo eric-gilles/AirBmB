@@ -3,8 +3,11 @@ import { CommentService } from '../services/comment.service';
 import { CommonModule } from '@angular/common';
 import { Comment } from '../Comment';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 import { response } from 'express';
 import { error } from 'console';
+import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-review-box',
@@ -22,7 +25,7 @@ export class ReviewBoxComponent {
   };
   firstTime = true;
   showError = false;
-  constructor(private commentService: CommentService) {}
+  constructor(private commentService: CommentService, private router: Router, private userService: UserService,) {}
 
   ngOnInit(): void {
     this.getComments();
@@ -33,10 +36,28 @@ export class ReviewBoxComponent {
   makeComment(): void {
     if (!this.idProperty) return;
     console.log(this.commentSend);
-    if (!this.commentSend.comment || !this.commentSend.note || this.commentSend.comment === '' || this.commentSend.note === '') {
-      alert('Veuillez saisir un commentaire et une note');
-      return;
-    }
+
+    this.userService.getUser().subscribe({
+      next: (response: HttpResponse<any>) => {
+        if (!this.commentSend.comment || !this.commentSend.note || this.commentSend.comment === '' || this.commentSend.note === '') {
+          alert('Veuillez saisir un commentaire et une note');
+          return;
+        }
+      },
+      error: (error: HttpErrorResponse) => {
+        if (error.status == 401) {
+          this.router.navigate(['/login']);
+          alert('Vous devez être connecté pour laisser un commentaire');
+        }
+      },
+      complete: () => {
+        console.log('comment added');
+        alert('Votre commentaire a bien été ajouté');
+        this.router.navigate(['/location/' + this.idProperty + '#reviews']);      
+      }
+    });
+
+    
 
     this.commentService.makeComment(
       this.idProperty,

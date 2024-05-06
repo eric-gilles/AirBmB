@@ -24,9 +24,17 @@ export class SignupComponent {
   constructor(private userService: UserService, private router: Router) {}
 
   onSubmit(): void {
+    if (this.user.email === '' || this.user.password === '' || this.user.phone === '' || this.user.firstname === '' || this.user.lastname === ''
+          || !this.user.email || !this.user.password || !this.user.phone || !this.user.firstname || !this.user.lastname) {
+      alert('Veuillez remplir tous les champs');
+      return;
+    }
     this.userService.register(this.user).subscribe(
       (response) => {
-        this.router.navigate(['/login']);
+        if (response.status === 200) {
+          console.log('Sign up successful:', response);
+          this.router.navigate(['/login']);
+        }
       },
       (error) => {
         console.error('Sign up failed:', error);

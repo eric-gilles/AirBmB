@@ -35,6 +35,19 @@ export class UserService {
     );
   }
 
+
+  updateUser(userData: any): Observable<any> {
+    const token = this.cookieService.get('token');
+    const httpOptions = {
+      headers: this.httpOptions.headers.append(
+        'Authorization',
+        `Bearer ${token}`
+      ),
+    };
+    return this.http.put<any>(`${this.API_URL}/user`, userData, httpOptions);
+  }
+
+
   logout(): void {
     this.cookieService.delete('token');
   }

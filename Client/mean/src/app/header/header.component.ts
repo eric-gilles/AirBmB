@@ -25,6 +25,7 @@ export class HeaderComponent {
   logout(): void {
     this.userService.logout();
     window.location.reload();
+    alert('Vous avez été bien déconnecté ! Au revoir sur Airbmb!');
   }
   getUserName() {
     this.userService.getUser().subscribe({
