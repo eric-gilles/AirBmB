@@ -109,13 +109,13 @@ sudo service mongod start
 5. Lancer le serveur Node.js :
 ```bash
 cd API/src/
-npm run dev:start
+npm run dev
 ```
 
 5. Lancer le client Angular dans un autre terminal :
 ```bash
 cd Client/mean/
-ng serve
+npm run start
 ```
 
 6. Ouvrir un navigateur et accéder à l'adresse suivante :  [http://localhost:4200](http://localhost:4200)
