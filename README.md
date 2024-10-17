@@ -84,6 +84,12 @@ L’application web est sous une architecture MEAN (MongoDB, Express, Angular et
 - **Affichage du profil utilisateur**
 
 ## Installation du projet en local:
+
+## Prérequis :
+- [Node.js](https://nodejs.org/fr)
+- [MongoDB](https://www.mongodb.com/try/download/community)
+- [Git](https://git-scm.com/downloads)
+
 1. Cloner le projet :
 ```bash
 git clone https://github.com/MorganNavel/projet-mean.git
